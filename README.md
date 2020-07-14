@@ -67,12 +67,12 @@ API: http://www.omdbapi.com/
 
 ### Wireframes
 #### Splash Page
-![alt text](docs/wireframes/iFilm/splash.png "Homepage")
+![Home Page](docs/wireframes/iFilm/splash.png "Home Page")
 #### Sign Up Page
-![alt text](docs/wireframes/iFilm/sign-up.png "Homepage")
+![Sign Up Page](docs/wireframes/iFilm/sign-up.png "Sign Up Page")
 #### Homepage
-![alt text](docs/wireframes/iFilm/HomePage.png "Homepage")
+![Home Page](docs/wireframes/iFilm/HomePage.png "Home Page")
 #### Movie Page
-![alt text](docs/wireframes/iFilm/movie-page.png "Homepage")
+![Movie Page](docs/wireframes/iFilm/movie-page.png "Movie Page")
 #### Watchlist Page
-![alt text](docs/wireframes/iFilm/watchlist.png "Homepage")
+![Watchlist Page](docs/wireframes/iFilm/watchlist.png "Watchlist Page")
