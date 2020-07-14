@@ -53,6 +53,10 @@ The app will attract anyone who wanted to have quick review of the movie they wa
 
 ### Data flow diagram
 ![dataflow diagram](./data-flow-diagram/dataflow-diagram.png)
+
+### Application architecture diagram
+![app diagram](./application-architecture-diagram/Application-Architecture-Diagram.png)
+
 ## Tech Stack
 ### MERN Stack
 #### MongoDB
