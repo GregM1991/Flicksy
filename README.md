@@ -61,3 +61,6 @@ React is a JavaScript framework built by FaceBook and is an incredibly simplisti
 
 #### Node.
 Node is how we can connect our application to a web server, before it, using JavaScript in the back end to create a web server wasn't possible. The invention of node allowed JavaScript users to finally take the versatility of JavaScript and incorporate it throughout the whole of the development of a website or application.
+
+### Other technologies
+API: http://www.omdbapi.com/
