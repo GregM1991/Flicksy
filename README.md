@@ -12,4 +12,7 @@
 - As a user, i want to be able to share my watch lists to other users.
 
 ### Target audience
-The app will attract anyone who wanted to have quick review of the movie they want to watch or just looking for recommendations of what movies they should watch base on their references. 
+The app will attract anyone who wanted to have quick review of the movie they want to watch or just looking for recommendations of what movies they should watch base on their references.
+
+### Data flow diagram
+![dataflow diagram](./data-flow-diagram/dataflow-diagram.png)
