@@ -19,13 +19,21 @@ Movie profiles should display movie information, such as, title, description, mo
 Friends system for other users to view your profile/ favourites/ playlists?
 Or just site account users to be able to other users profiles
 
+## Target audience
+The app will attract anyone who wanted to have quick review of the movie they want to watch or just looking for recommendations of what movies they should watch base on their references. 
+
 ## User Persona
 ### Jacob
 #### Details
 Young, single or partnered. Loves to dig into tv series or good movie during the night time. Uses films to unwind after uni/school/work. Very active online, always looking for a movie online to watch.
 #### Goals
-
-
+Wants to be able to scroll easily through movies, with a visually clean ui that's easy to navigate, to save to watchlists and write reviews based on their viewing experience.
+#### Characteristics 
+- Age is 18-35
+- Introverted, stays in during the weekend and rainy days
+- Loves movies and Tv
+- Trying to have one spot to find movies and shows and keep track of what has/hasn't watched
+- Wants it centralised and easy to use
 
 ## User story
 - As a site visitor, i want to be able to view all the top movies at the moment when i enter the site.
@@ -40,5 +48,16 @@ Young, single or partnered. Loves to dig into tv series or good movie during the
 - As a user, i don't want my watch lists to be modified by any other user.
 - As a user, i want to be able to share my watch lists to other users.
 
-## Target audience
-The app will attract anyone who wanted to have quick review of the movie they want to watch or just looking for recommendations of what movies they should watch base on their references. 
+## Tech Stack
+### MERN Stack
+#### MongoDB
+MongoDB is a NoSQL database where each record is a document comprising of key-value pairs that are similar to JSON (JavaScript Object Notation) objects. MongoDB is flexible and allows its users to create schema, databases, tables, etc. Documents that are identifiable by a primary key make up the basic unit of MongoDB. Once MongoDB is installed, users can make use of Mongo shell as well. Mongo shell provides a JavaScript interface through which the users can interact and carry out operations (eg: querying, updating records, deleting records).
+
+#### Express(.js)
+Express is a Node.js framework. Rather than writing the code using Node.js and creating loads of Node modules, Express makes it simpler and easier to write the back-end code. Express helps in designing great web applications and APIs. Express supports many middlewares which makes the code shorter and easier to write.
+
+#### React(.js)
+React is a JavaScript framework built by FaceBook and is an incredibly simplistic yet powerful framework to build out interactive and dynamic UI's quickly. It works on simple components that connected together can create intricate user interfaces. These components can access data from the backend and render them as HTML. Minimal code and minimal pain is what you can expect from React, as well as speed and never having to refresh your page as all outgoing requests are handled right in the page with JavaScript.
+
+#### Node.
+Node is how we can connect our application to a web server, before it, using JavaScript in the back end to create a web server wasn't possible. The invention of node allowed JavaScript users to finally take the versatility of JavaScript and incorporate it throughout the whole of the development of a website or application.
