@@ -64,3 +64,15 @@ Node is how we can connect our application to a web server, before it, using Jav
 
 ### Other technologies
 API: http://www.omdbapi.com/
+
+### Wireframes
+#### Splash Page
+![alt text](docs/wireframes/iFilm/splash.png "Homepage")
+#### Sign Up Page
+![alt text](docs/wireframes/iFilm/sign-up.png "Homepage")
+#### Homepage
+![alt text](docs/wireframes/iFilm/HomePage.png "Homepage")
+#### Movie Page
+![alt text](docs/wireframes/iFilm/movie-page.png "Homepage")
+#### Watchlist Page
+![alt text](docs/wireframes/iFilm/watchlist.png "Homepage")
