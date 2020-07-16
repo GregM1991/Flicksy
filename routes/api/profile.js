@@ -34,18 +34,18 @@ router.post("/", auth, async (req, res) => {
   const { name } = req.body
 
   const profileFields = {}
-  profileFields.user = req.body.user.id
+  profileFields.user = req.user.id
   if (name) profileFields.name = name
 
   try {
-    let profile = await Profile.findOne({ user: req.body.user.id })
-    console.log(req.body.user.id)
+    let profile = await Profile.findOne({ user: req.user.id })
+    console.log(req.user.id)
 
     // @todo: Change the user to user_id for clarity
     if (profile) {
       // Update
       profile = await Profile.findOneAndUpdate(
-        { user: req.body.user.id },
+        { user: req.user.id },
         { $set: profileFields },
         { new: true }
       )
@@ -59,6 +59,23 @@ router.post("/", auth, async (req, res) => {
     await profile.save()
     console.log("New profile saved")
     res.json(profile)
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send("Server Error")
+  }
+})
+
+// @route   DELETE api/profile
+// @desc    Delete profile & user
+// @access  Private
+router.delete("/", auth, async (req, res) => {
+  try {
+    // Remove profile
+    await Profile.findOneAndRemove({ user: req.user.id })
+    // Remove user
+    await User.findOneAndRemove({ _id: req.user.id })
+
+    res.json({ msg: "User Deleted" })
   } catch (error) {
     console.error(error.message)
     res.status(500).send("Server Error")
