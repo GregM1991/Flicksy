@@ -14,13 +14,12 @@ const User = require("../../models/User")
 router.get("/me", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
-      user: req.user.id,
+      user: req.body.user.id,
     }).populate("user", ["name", "avatar"])
 
     if (!profile) {
       return res.status(400).json({ msg: "There is no profile for this user" })
     }
-
     res.json(profile)
   } catch (error) {
     console.error(err.message)
@@ -35,18 +34,18 @@ router.post("/", auth, async (req, res) => {
   const { name } = req.body
 
   const profileFields = {}
-  profileFields.user = req.user.id
+  profileFields.user = req.body.user.id
   if (name) profileFields.name = name
 
   try {
-    let profile = await Profile.findOne({ user: req.user.id })
-    console.log(req.user.id)
+    let profile = await Profile.findOne({ user: req.body.user.id })
+    console.log(req.body.user.id)
 
     // @todo: Change the user to user_id for clarity
     if (profile) {
       // Update
       profile = await Profile.findOneAndUpdate(
-        { user: req.user.id },
+        { user: req.body.user.id },
         { $set: profileFields },
         { new: true }
       )
@@ -55,7 +54,7 @@ router.post("/", auth, async (req, res) => {
     }
 
     // Create
-    profile = new Profile({ name: req.body.name })
+    profile = new Profile(profileFields)
 
     await profile.save()
     console.log("New profile saved")
