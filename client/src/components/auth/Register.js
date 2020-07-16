@@ -39,6 +39,12 @@ export const Register = () => {
         console.error(error.response.data)
       }
     }
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+      password2: "",
+    })
   }
   return (
     <>
