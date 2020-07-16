@@ -28,6 +28,42 @@ router.get("/me", auth, async (req, res) => {
   }
 })
 
-// @route   GET api/profile/me
-// @desc    Get current users profile
+// @route   POST api/profile/me
+// @desc    Create or update a user profile
 // @access  Private
+router.post("/", auth, async (req, res) => {
+  const { name } = req.body
+
+  const profileFields = {}
+  profileFields.user = req.user.id
+  if (name) profileFields.name = name
+
+  try {
+    let profile = await Profile.findOne({ user: req.user.id })
+    console.log(req.user.id)
+
+    // @todo: Change the user to user_id for clarity
+    if (profile) {
+      // Update
+      profile = await Profile.findOneAndUpdate(
+        { user: req.user.id },
+        { $set: profileFields },
+        { new: true }
+      )
+      console.log("profile updated")
+      return res.json(profile)
+    }
+
+    // Create
+    profile = new Profile({ name: req.body.name })
+
+    await profile.save()
+    console.log("New profile saved")
+    res.json(profile)
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send("Server Error")
+  }
+})
+
+module.exports = router

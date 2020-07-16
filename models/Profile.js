@@ -5,50 +5,27 @@ const ProfileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
+  name: {
+    type: String,
+  },
   playlists: [
     {
+      playlistname: {
+        type: String,
+        required: true,
+      },
       playlist: [
         {
-          movietitle: {
+          omdbmovieid: {
             type: String,
-          },
-          moviedate: {
-            type: Number,
-          },
-          movieruntime: {
-            type: Number,
-          },
-          moviecontentrating: {
-            type: String,
-          },
-          moviegenre: [
-            {
-              genre: {
-                type: String,
-              },
-            },
-          ],
-          rating: {
-            type: Number,
-          },
-          userrating: {
-            type: Number,
-          },
-          director: {
-            type: String,
-          },
-          actors: [
-            {
-              name: {
-                type: String,
-              },
-            },
-          ],
-          description: {
-            type: String,
+            required: true,
           },
         },
       ],
+      datecreated: {
+        type: Date,
+        default: Date.now,
+      },
     },
   ],
 })
