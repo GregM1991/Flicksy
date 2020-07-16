@@ -4,12 +4,13 @@ import axios from "axios"
 
 export const Register = () => {
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
     password2: "",
   })
 
-  const { email, password, password2 } = formData
+  const { name, email, password, password2 } = formData
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -20,6 +21,7 @@ export const Register = () => {
       console.log("Passwords do not match")
     } else {
       const newUser = {
+        name,
         email,
         password,
       }
@@ -43,6 +45,13 @@ export const Register = () => {
       <h1>Sign Up</h1>
       <p>Create Your Account</p>
       <form onSubmit={(e) => onSubmit(e)}>
+        <input
+          type="text"
+          placeholder="Name"
+          name="name"
+          value={name}
+          onChange={(e) => onChange(e)}
+        />
         <input
           type="text"
           placeholder="Email"
