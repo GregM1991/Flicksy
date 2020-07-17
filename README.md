@@ -76,7 +76,7 @@ API: http://www.omdbapi.com/
 
 ### Wireframes
 #### Splash Page
-![Home Page](docs/wireframes/iFilm/splash.png "Home Page")
+![Home Page](docs/wireframes/iFilm/Splash.png "Home Page")
 #### Sign Up Page
 ![Sign Up Page](docs/wireframes/iFilm/sign-up.png "Sign Up Page")
 #### Homepage
@@ -84,4 +84,4 @@ API: http://www.omdbapi.com/
 #### Movie Page
 ![Movie Page](docs/wireframes/iFilm/movie-page.png "Movie Page")
 #### Watchlist Page
-![Watchlist Page](docs/wireframes/iFilm/watchlist.png "Watchlist Page")
+![Watchlist Page](docs/wireframes/iFilm/Watchlist.png "Watchlist Page")
