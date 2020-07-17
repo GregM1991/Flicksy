@@ -52,10 +52,10 @@ Wants to be able to scroll easily through movies, with a visually clean ui that'
 The app will attract anyone who wanted to have quick review of the movie they want to watch or just looking for recommendations of what movies they should watch base on their references.
 
 ### Data flow diagram
-![dataflow diagram](./data-flow-diagram/dataflow-diagram.png)
+![dataflow diagram](.docs/data-flow-diagram/dataflow-diagram.png)
 
 ### Application architecture diagram
-![app diagram](./application-architecture-diagram/Application-Architecture-Diagram.png)
+![app diagram](.docs/application-architecture-diagram/Application-Architecture-Diagram.png)
 
 ## Tech Stack
 ### MERN Stack
