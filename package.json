@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/GregM1991/iFlicks#readme",
   "dependencies": {
+    "antd": "^4.4.2",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.1",
     "express": "^4.17.1",

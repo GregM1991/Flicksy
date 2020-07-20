@@ -52,10 +52,10 @@ Wants to be able to scroll easily through movies, with a visually clean ui that'
 The app will attract anyone who wanted to have quick review of the movie they want to watch or just looking for recommendations of what movies they should watch base on their references.
 
 ### Data flow diagram
-![dataflow diagram](./data-flow-diagram/dataflow-diagram.png)
+![dataflow diagram](docs/data-flow-diagram/dataflow-diagram.png)
 
 ### Application architecture diagram
-![app diagram](./application-architecture-diagram/Application-Architecture-Diagram.png)
+![app diagram](docs/application-architecture-diagram/Application-Architecture-Diagram.png)
 
 ## Tech Stack
 ### MERN Stack
@@ -72,11 +72,11 @@ React is a JavaScript framework built by FaceBook and is an incredibly simplisti
 Node is how we can connect our application to a web server, before it, using JavaScript in the back end to create a web server wasn't possible. The invention of node allowed JavaScript users to finally take the versatility of JavaScript and incorporate it throughout the whole of the development of a website or application.
 
 ### Other technologies
-API: http://www.omdbapi.com/
+API: https://www.themoviedb.org/
 
 ### Wireframes
 #### Splash Page
-![Home Page](docs/wireframes/iFilm/splash.png "Home Page")
+![Home Page](docs/wireframes/iFilm/Splash.png "Home Page")
 #### Sign Up Page
 ![Sign Up Page](docs/wireframes/iFilm/sign-up.png "Sign Up Page")
 #### Homepage
@@ -84,4 +84,4 @@ API: http://www.omdbapi.com/
 #### Movie Page
 ![Movie Page](docs/wireframes/iFilm/movie-page.png "Movie Page")
 #### Watchlist Page
-![Watchlist Page](docs/wireframes/iFilm/watchlist.png "Watchlist Page")
+![Watchlist Page](docs/wireframes/iFilm/Watchlist.png "Watchlist Page")
