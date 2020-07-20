@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from "react"
-import {API_URL, API_KEY} from '../Config'
-
-import styles from './Landing.module.css'
+import {API_URL, API_KEY,IMG_URL} from '../Config'
 import axios from "axios"
-import {Typography, Row} from 'antd'
+
 import MainImg from "../Sections/MainImg"
-const {Title} = Typography
+
 
 
 export const Landing = () => {
@@ -26,20 +24,22 @@ export const Landing = () => {
   }, [])
   return (
   
-  <div style={{ width: '100%', margin:0 }}>
-          {/* Landing movie img */}
-    <MainImg/>
+  <div >
+  
+    <MainImg image={`${IMG_URL}/w1280${Movies[0].backdrop_path}`} 
+             title={Movies[0].original_title} 
+              text={Movies[0].overview}/>
     
       {/* Body */}
-      <div className={styles.landingBody}>
-        <Title level={2}>Latest movies</Title>
+      <div>
+        <span>Latest Movie</span>
         <hr/>
 
       
         
 
         {/* Load more button */}
-        <div className={styles.buttonWrapper}>
+        <div>
           <button> 
             LOAD MORE
           </button>
