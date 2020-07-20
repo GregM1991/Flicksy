@@ -35,7 +35,7 @@ export const Landing = () => {
       {Movies.map((movie) => {
         return (
           <MainImg
-            image={`${IMG_URL}w1280${movie.backdrop_path}`}
+            image={`${IMG_URL}w400${movie.backdrop_path}`}
             title={movie.original_title}
             text={movie.overview}
           />

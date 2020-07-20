@@ -7,7 +7,8 @@ const MainImg = (props) => {
         style={{
           backgroundImage: `url(${props.image})`,
           width: "100%",
-          height: "400px",
+          height: "100px",
+          backgroundRepeat: "no-repeat",
         }}
       ></div>
       <span>{props.title}</span>
