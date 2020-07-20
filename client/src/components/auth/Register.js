@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import axios from "axios"
 
 export const Register = () => {
@@ -9,6 +9,8 @@ export const Register = () => {
     password: "",
     password2: "",
   })
+
+  const history = useHistory()
 
   const { name, email, password, password2 } = formData
 
@@ -35,16 +37,11 @@ export const Register = () => {
         const res = await axios.post("/api/users", body, config)
         console.log(res.data)
         console.log("Success")
+        history.push("/")
       } catch (error) {
         console.error(error.response.data)
       }
     }
-    setFormData({
-      name: "",
-      email: "",
-      password: "",
-      password2: "",
-    })
   }
   return (
     <>
