@@ -14,7 +14,7 @@ export const Landing = () => {
       try{
         const res = await axios.get(`${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`)
         console.log(res);
-        setMovies(res.results)
+        setMovies(res.data.results)
 
       } catch(err){
         console.log(err);
@@ -25,10 +25,12 @@ export const Landing = () => {
   return (
   
   <div >
-  
-    <MainImg image={`${IMG_URL}/w1280${Movies[0].backdrop_path}`} 
+  {Movies[0] &&  
+  <MainImg image={`${IMG_URL}w1280${Movies[0].backdrop_path}`} 
              title={Movies[0].original_title} 
               text={Movies[0].overview}/>
+  }
+   
     
       {/* Body */}
       <div>
