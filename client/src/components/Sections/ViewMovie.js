@@ -45,10 +45,11 @@ const ViewMovie = (props) => {
         }}
         
       ></div>
-             <div>{getMovie.title}</div>
-             <div>{getMovie.overview}</div>
-             <div>{getMovie.runtime} mins</div>
-            <div>${getMovie.budget}</div>
+            <div>{getMovie.title}</div>
+            <div>{getMovie.overview}</div>
+            <div>{getMovie.runtime} mins</div>
+            <div>Release date: {getMovie.release_date}</div>
+            <div>Rating: {getMovie.vote_average}</div>
         </div>
     )
 }
