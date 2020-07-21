@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { API_URL, API_KEY, IMG_URL } from "../Config"
 import axios from "axios"
 
-import MainImg from "../Sections/MainImg"
+import SingleMovie from "../Sections/SingleMovie"
 
 export const Landing = () => {
   const [Movies, setMovies] = useState([])
@@ -33,7 +33,7 @@ export const Landing = () => {
       <div></div>
       {Movies.map((movie, index) => {
         return (
-          <MainImg
+          <SingleMovie
             key={movie.id}
             image={`${IMG_URL}w400${movie.backdrop_path}`}
             title={movie.original_title}
