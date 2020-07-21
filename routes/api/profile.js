@@ -14,7 +14,7 @@ const User = require("../../models/User")
 router.get("/me", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
-      user: req.body.user.id,
+      user: req.user.id,
     }).populate("user", ["name", "avatar"])
 
     if (!profile) {
@@ -100,7 +100,7 @@ router.put(
 // @desc    Add movie to playlist
 // @access  Private
 router.put(
-  "playlist/:pl_id/movie",
+  "/playlist/:pl_id/movie",
   [auth, check("movieurl", "Movie required a URL").not().isEmpty()],
   async (req, res) => {
     const errors = validationResult(res)
@@ -114,10 +114,15 @@ router.put(
 
     try {
       const profile = await Profile.findOne({ user: req.user.id })
-      const playlist = profile.playlists.filter(
-        (playlist) => playlist.id !== req.params.pl_id
-      )
-      console.log(playlist)
+      const plIndex = profile.playlists
+        .map((item) => item.id)
+        .indexOf(req.params.pl_id)
+      profile.playlists[plIndex].playlist.unshift(newMovie)
+      console.log(profile.playlists[plIndex])
+
+      await profile.save()
+
+      res.json(profile)
     } catch (error) {
       console.error(error.message)
       res.status(500).send("Server Error")

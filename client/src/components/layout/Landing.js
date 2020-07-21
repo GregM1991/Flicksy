@@ -6,7 +6,6 @@ import MainImg from "../Sections/MainImg"
 
 export const Landing = () => {
   const [Movies, setMovies] = useState([])
-  const [movieList, setMovieList] = useState([])
 
   async function getMovie() {
     try {
