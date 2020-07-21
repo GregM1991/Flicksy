@@ -6,9 +6,8 @@ import MainImg from "../Sections/MainImg"
 
 export const Landing = () => {
   const [Movies, setMovies] = useState([])
-  const [movieList, setMovieList] = useState([])
 
-  async function getMovie() {
+  async function getMovies() {
     try {
       const res = await axios.get(
         `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
@@ -23,7 +22,7 @@ export const Landing = () => {
   // setMovieList(getMovie())
 
   useEffect(() => {
-    getMovie()
+    getMovies()
   }, [])
 
   // const movieList = getMovie()
