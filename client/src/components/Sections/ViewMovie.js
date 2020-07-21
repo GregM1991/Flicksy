@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from "axios"
-import { API_URL, API_KEY} from "../Config"
+import { API_URL, API_KEY, IMG_URL} from "../Config"
 const ViewMovie = (props) => {
     
     const [getMovie, setGetMovie] = useState('');
@@ -35,19 +35,20 @@ const ViewMovie = (props) => {
     //     }
     // })
     return (
-        <div>
+        <div> 
             <div
-                style={{
-                backgroundImage: `url(${props.image})`,
-                width: "100%",
-                height: "100px",
-                backgroundRepeat: "no-repeat",
-                }}
-            >
-                
-            </div>
-            <span>{props.title}</span>
-            <p>{props.text}</p>
+        style={{
+          backgroundImage: `url(${IMG_URL}w400${getMovie.backdrop_path})`,
+          width: "100%",
+          height: "100px",
+          backgroundRepeat: "no-repeat",
+        }}
+        
+      ></div>
+             <div>{getMovie.title}</div>
+             <div>{getMovie.overview}</div>
+             <div>{getMovie.runtime} mins</div>
+            <div>${getMovie.budget}</div>
         </div>
     )
 }

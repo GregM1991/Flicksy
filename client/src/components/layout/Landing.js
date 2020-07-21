@@ -31,12 +31,13 @@ export const Landing = () => {
   return (
     <>
       <div></div>
-      {Movies.map((movie) => {
+      {Movies.map((movie, index) => {
         return (
           <MainImg
             image={`${IMG_URL}w400${movie.backdrop_path}`}
             title={movie.original_title}
             text={movie.overview}
+            movieId={movie.id}
           />
         )
       })}
