@@ -22,16 +22,16 @@ router.get("/me", auth, async (req, res) => {
     }
     res.json(profile)
   } catch (error) {
-    console.error(err.message)
+    console.error(error.message)
     res.status(500).send("Server Error")
   }
 })
 
-// @route   POST api/profile/me
+// @route   POST api/profile
 // @desc    Create or update a user profile
 // @access  Private
 router.post("/", auth, async (req, res) => {
-  const { name } = req.body
+  const { name, playlists } = req.body
 
   const profileFields = {}
   profileFields.user = req.user.id
@@ -58,6 +58,88 @@ router.post("/", auth, async (req, res) => {
 
     await profile.save()
     console.log("New profile saved")
+    res.json(profile)
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send("Server Error")
+  }
+})
+
+// @route   PUT api/profile/playlist
+// @desc    Add profile playlist
+// @access  Private
+router.put(
+  "/playlist",
+  [auth, check("playlistname", "Please input a playlist name").not().isEmpty()],
+  async (req, res) => {
+    const errors = validationResult(res)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() })
+    }
+
+    const { playlistname } = req.body
+
+    const newPlaylist = { playlistname }
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id })
+
+      profile.playlists.unshift(newPlaylist)
+
+      await profile.save()
+
+      res.json(profile)
+    } catch (error) {
+      console.error(error.message)
+      res.status(500).send("Server Error")
+    }
+  }
+)
+
+// @route   PUT api/profile/:pl_id/movie
+// @desc    Add movie to playlist
+// @access  Private
+router.put(
+  "playlist/:pl_id/movie",
+  [auth, check("movieurl", "Movie required a URL").not().isEmpty()],
+  async (req, res) => {
+    const errors = validationResult(res)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() })
+    }
+
+    const { movieurl } = req.body
+
+    const newMovie = { movieurl }
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id })
+      const playlist = profile.playlists.filter(
+        (playlist) => playlist.id !== req.params.pl_id
+      )
+      console.log(playlist)
+    } catch (error) {
+      console.error(error.message)
+      res.status(500).send("Server Error")
+    }
+  }
+)
+
+// @route   DELETE api/profile/playlist/:pl_id
+// @desc    Delete a profile playlist
+// @access  Private
+router.delete("/playlist/:pl_id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id })
+    // Get remove index
+    const removeIndex = profile.playlists
+      .map((item) => item.id)
+      .indexOf(req.params.pl_id)
+
+    profile.playlists.splice(removeIndex, 1)
+
+    await profile.save()
+
     res.json(profile)
   } catch (error) {
     console.error(error.message)
