@@ -16,7 +16,7 @@ const ProfileSchema = new mongoose.Schema({
       },
       playlist: [
         {
-          omdbmovieid: {
+          movieurl: {
             type: String,
             required: true,
           },
