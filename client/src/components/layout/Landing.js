@@ -12,8 +12,8 @@ export const Landing = () => {
       const res = await axios.get(
         `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
       )
-      console.log(res)
       setMovies(res.data.results)
+      console.log(res.data.results)
     } catch (err) {
       console.log(err)
     }
@@ -34,6 +34,7 @@ export const Landing = () => {
       {Movies.map((movie, index) => {
         return (
           <MainImg
+            key={movie.id}
             image={`${IMG_URL}w400${movie.backdrop_path}`}
             title={movie.original_title}
             text={movie.overview}
