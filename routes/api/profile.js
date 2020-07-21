@@ -65,6 +65,61 @@ router.post("/", auth, async (req, res) => {
   }
 })
 
+// @route   PUT api/profile/review
+// @desc    Add profile review
+// @access  Private
+router.put(
+  "/reviews",
+  [auth, check("title", "Please input a title").not().isEmpty()],
+  async (req, res) => {
+    const errors = validationResult(res)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() })
+    }
+
+    const { title } = req.body
+
+    const newReview = { title }
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id })
+
+      profile.reviews.unshift(newReview)
+
+      await profile.save()
+
+      res.json(profile)
+    } catch (error) {
+      console.error(error.message)
+      res.status(500).send("Server Error")
+    }
+  }
+)
+
+// @route   DELETE api/profile/playlist/:pl_id
+// @desc    Delete a profile playlist
+// @access  Private
+router.delete("/review", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id })
+    // Get remove index
+    const removeIndex = profile.reviews
+      .map((item) => item.id)
+      .indexOf(req.params.pl_id)
+
+    profile.reviews.splice(removeIndex, 1)
+
+    await profile.save()
+
+    res.json(profile)
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send("Server Error")
+  }
+})
+
+
+
 // @route   DELETE api/profile
 // @desc    Delete profile & user
 // @access  Private
