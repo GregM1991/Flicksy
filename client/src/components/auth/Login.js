@@ -31,7 +31,7 @@ export const Login = () => {
       }
       const body = JSON.stringify(existingUser)
       const res = await axios.post("/api/auth", body, config)
-      console.log(res.data.token)
+      console.log(res.data)
       localStorage.setItem("token", res.data.token)
       console.log("Logged In")
       history.push("/")

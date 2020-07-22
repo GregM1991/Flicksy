@@ -6,6 +6,7 @@ import { Navbar } from "./components/layout/Navbar"
 import { Landing } from "./components/layout/Landing"
 import ViewMovie from "./components/Sections/ViewMovie"
 import UserContext from "./context/UserContext"
+import axios from "axios"
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -13,8 +14,19 @@ const App = () => {
     user: undefined,
   })
   useEffect(() => {
-    console.log(localStorage)
-  })
+    const checkLoggedIn = async () => {
+      const token = localStorage.getItem("token")
+      const userRes = await axios.get("/api/auth", {
+        headers: { "x-auth-token": token },
+      })
+      setUserData({
+        token,
+        user: userRes.data,
+      })
+    }
+
+    checkLoggedIn()
+  }, [])
   return (
     <Router>
       <UserContext.Provider value={{ userData, setUserData }}>

@@ -1,10 +1,11 @@
 const express = require("express")
 const connectDB = require("./config/db.js")
+var cors = require("cors")
 
 // Set up express
 
 const app = express()
-
+app.use(cors())
 // Connect DB
 connectDB()
 
