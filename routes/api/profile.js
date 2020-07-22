@@ -200,16 +200,16 @@ router.put(
   }
 )
 
-// @route   DELETE api/profile/playlist/:pl_id
+// @route   DELETE api/profile/reviews/reviews_id
 // @desc    Delete a profile playlist
 // @access  Private
-router.delete("/review", auth, async (req, res) => {
+router.delete("/reviews/:reviews_id", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id })
     // Get remove index
     const removeIndex = profile.reviews
-      .map((item) => item.id)
-      .indexOf(req.params.pl_id)
+      .map((review) => review.id)
+      .indexOf(req.params.reviews_id)
 
     profile.reviews.splice(removeIndex, 1)
 
@@ -221,24 +221,5 @@ router.delete("/review", auth, async (req, res) => {
     res.status(500).send("Server Error")
   }
 })
-
-// @route   DELETE api/profile
-// @desc    Delete profile & user
-// @access  Private
-router.delete("/", auth, async (req, res) => {
-  try {
-    // Remove profile
-    await Profile.findOneAndRemove({ user: req.user.id })
-    // Remove user
-    await User.findOneAndRemove({ _id: req.user.id })
-
-    res.json({ msg: "User Deleted" })
-  } catch (error) {
-    console.error(error.message)
-    res.status(500).send("Server Error")
-  }
-})
-
-module.exports = router
 
 module.exports = router
