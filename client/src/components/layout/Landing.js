@@ -7,26 +7,21 @@ import SingleMovie from "../Sections/SingleMovie"
 export const Landing = () => {
   const [Movies, setMovies] = useState([])
 
-  async function getMovies() {
-    try {
-      const res = await axios.get(
-        `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
-      )
-      setMovies(res.data.results)
-      console.log(res.data.results)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  // setMovieList(getMovie())
-
   useEffect(() => {
+    async function getMovies() {
+      try {
+        const res = await axios.get(
+          `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
+        )
+        setMovies(res.data.results)
+        console.log(res.data.results)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
     getMovies()
   }, [])
-
-  // const movieList = getMovie()
-  // console.log(movieList)
 
   return (
     <>

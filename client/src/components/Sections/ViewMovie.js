@@ -16,7 +16,7 @@ const ViewMovie = (props) => {
     } catch (e) {
       console.log(e)
     }
-  }, [])
+  }, [movieId])
 
   return (
     <div>
