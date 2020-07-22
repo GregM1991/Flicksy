@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from "axios"
 import { API_URL, API_KEY, IMG_URL} from "../Config"
+import FavBtn from '../Button/FavBtn';
 const ViewMovie = (props) => {
     
     const [getMovie, setGetMovie] = useState('');
@@ -50,6 +51,7 @@ const ViewMovie = (props) => {
             <div>{getMovie.runtime} mins</div>
             <div>Release date: {getMovie.release_date}</div>
             <div>Rating: {getMovie.vote_average}</div>
+            <FavBtn/>
         </div>
     )
 }

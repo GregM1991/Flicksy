@@ -1,5 +1,4 @@
 import React from "react"
-import { API_URL, API_KEY, IMG_URL } from "../Config"
 import {Link} from 'react-router-dom'
 const MainImg = (props) => {
   return (
