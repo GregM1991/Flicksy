@@ -163,4 +163,125 @@ router.put(
   }
 )
 
+// @route   DELETE api/profile/:pl_id/:mv_id
+// @desc    Delete a movie from playlist
+// @access  Private
+router.delete("/playlist/:pl_id/:mv_id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id })
+
+    const playlistIndex = profile.playlists
+      .map((playlist) => playlist.id)
+      .indexOf(req.params.pl_id)
+    // Get remove index
+    const removeIndex = profile.playlists[playlistIndex].playlist
+      .map((movie) => movie.id)
+      .indexOf(req.params.mv_id)
+
+    profile.playlists[playlistIndex].playlist.splice(removeIndex, 1)
+
+    await profile.save()
+
+    res.json(profile)
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send("Server Error")
+  }
+})
+
+// @route   PUT api/profile/review
+// @desc    Add profile review
+// @access  Private
+router.put(
+  "/reviews",
+  [
+    auth,
+    [
+      check("reviewdescription", "Please input a description").not().isEmpty(),
+      check("reviewtitle", "Please input a title").not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(res)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() })
+    }
+
+    const { omdbmovieid, reviewtitle, reviewdescription } = req.body
+
+    const newReview = { omdbmovieid, reviewtitle, reviewdescription }
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id })
+
+      profile.reviews.unshift(newReview)
+
+      await profile.save()
+
+      res.json(profile)
+    } catch (error) {
+      console.error(error.message)
+      res.status(500).send("Server Error")
+    }
+  }
+)
+
+// @route   DELETE api/profile/reviews/:reviews_id
+// @desc    Delete a profile review
+// @access  Private
+router.delete("/reviews/:reviews_id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id })
+    // Get remove index
+    const removeIndex = profile.reviews
+      .map((review) => review.id)
+      .indexOf(req.params.reviews_id)
+
+    profile.reviews.splice(removeIndex, 1)
+
+    await profile.save()
+
+    res.json(profile)
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send("Server Error")
+  }
+})
+
+// @route   PUT api/profile/reviews/:reviews_id
+// @desc    Delete a profile review
+// @access  Private
+router.put("/reviews/:reviews_id", auth, async (req, res) => {
+  const { reviewtitle, reviewdescription } = req.body
+
+  const reviewFields = {}
+  if (reviewtitle) reviewFields.reviewtitle = reviewtitle
+  if (reviewdescription) reviewFields.reviewdescription = reviewdescription
+
+  try {
+    // Update
+    const profile = await Profile.findOne({ user: req.user.id })
+
+    const updatedReviews = profile.reviews.map((review) => {
+      console.log(review)
+      if (review._id.toString() === req.params.reviews_id) {
+        review.reviewtitle = reviewtitle || review.reviewtitle
+        review.reviewdescription = reviewdescription || review.reviewdescription
+      }
+      return review
+    })
+
+    if (profile) {
+      profile.reviews = updatedReviews
+      profile.save()
+    }
+
+    console.log("profile updated")
+    return res.json(profile)
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send("Server Error")
+  }
+})
+
 module.exports = router
