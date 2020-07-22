@@ -15,7 +15,7 @@ const favoriteSchema = new mongoose.Schema({
     movieImage:{
         type:  String
     },
-    movieRunTime{
+    movieRunTime:{
         type: String
     }
 })

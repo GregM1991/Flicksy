@@ -51,7 +51,10 @@ const ViewMovie = (props) => {
             <div>{getMovie.runtime} mins</div>
             <div>Release date: {getMovie.release_date}</div>
             <div>Rating: {getMovie.vote_average}</div>
-            <FavBtn/>
+            <FavBtn
+              movieId={movieId}
+              movieInfo={getMovie}
+              />
         </div>
     )
 }
