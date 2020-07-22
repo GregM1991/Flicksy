@@ -28,6 +28,29 @@ const ProfileSchema = new mongoose.Schema({
       },
     },
   ],
+  reviews: [
+    {
+      omdbmovieid: {
+        type: String,
+        required: true,
+      },
+      reviewtitle: {
+        type: String,
+        required: true,
+      },
+      reviewdescription: {
+        type: String,
+        required: true,
+      },
+      reviewrating: {
+        type: Boolean,
+      },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
 })
 
 module.exports = Profile = mongoose.model("profile", ProfileSchema)

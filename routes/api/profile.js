@@ -163,4 +163,82 @@ router.put(
   }
 )
 
+// @route   PUT api/profile/review
+// @desc    Add profile review
+// @access  Private
+router.put(
+  "/reviews",
+  [
+    auth,
+    [
+      check("reviewdescription", "Please input a description").not().isEmpty(),
+      check("reviewtitle", "Please input a title").not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(res)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() })
+    }
+
+    const { omdbmovieid, reviewtitle, reviewdescription } = req.body
+
+    const newReview = { omdbmovieid, reviewtitle, reviewdescription }
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id })
+
+      profile.reviews.unshift(newReview)
+
+      await profile.save()
+
+      res.json(profile)
+    } catch (error) {
+      console.error(error.message)
+      res.status(500).send("Server Error")
+    }
+  }
+)
+
+// @route   DELETE api/profile/playlist/:pl_id
+// @desc    Delete a profile playlist
+// @access  Private
+router.delete("/review", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id })
+    // Get remove index
+    const removeIndex = profile.reviews
+      .map((item) => item.id)
+      .indexOf(req.params.pl_id)
+
+    profile.reviews.splice(removeIndex, 1)
+
+    await profile.save()
+
+    res.json(profile)
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send("Server Error")
+  }
+})
+
+// @route   DELETE api/profile
+// @desc    Delete profile & user
+// @access  Private
+router.delete("/", auth, async (req, res) => {
+  try {
+    // Remove profile
+    await Profile.findOneAndRemove({ user: req.user.id })
+    // Remove user
+    await User.findOneAndRemove({ _id: req.user.id })
+
+    res.json({ msg: "User Deleted" })
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send("Server Error")
+  }
+})
+
+module.exports = router
+
 module.exports = router
