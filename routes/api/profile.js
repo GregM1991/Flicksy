@@ -223,24 +223,29 @@ router.delete("/reviews/:reviews_id", auth, async (req, res) => {
 })
 
 router.put("/reviews/:reviews_id", auth, async (req, res) => {
-  const { omdbmovieid, reviewtitle, reviewdescription } = req.body
+  const { reviewtitle, reviewdescription } = req.body
 
-  const newReview = { omdbmovieid, reviewtitle, reviewdescription }
+  const reviewFields = {}
+  if (reviewtitle) reviewFields.reviewtitle = reviewtitle
+  if (reviewdescription) reviewFields.reviewdescription = reviewdescription
 
   try {
     // Update
     const profile = await Profile.findOne({ user: req.user.id })
-    const params = req.params.reviews_id
-    const reviewId = profile.reviews[1]._id
-    console.log("*******")
-    console.log(typeof params)
-    console.log(reviewId.toString())
 
-    const reviewToChange = profile.reviews.filter(
-      (review) => review._id.toString() === req.params.reviews_id
-    )
+    const updatedReviews = profile.reviews.map((review) => {
+      console.log(review)
+      if (review._id.toString() === req.params.reviews_id) {
+        review.reviewtitle = reviewtitle || review.reviewtitle
+        review.reviewdescription = reviewdescription || review.reviewdescription
+      }
+      return review
+    })
 
-    console.log(`Review to change = ${reviewToChange}`)
+    if (profile) {
+      profile.reviews = updatedReviews
+      profile.save()
+    }
 
     console.log("profile updated")
     return res.json(profile)
