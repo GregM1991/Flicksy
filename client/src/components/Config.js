@@ -1,4 +1,6 @@
+
 //SERVER ROUTES
+
 export const USER_SERVER = '../../../routes/api/users'
 export const API_KEY = 'd000e49dfb883177f289b28c41dc7d69'
 
