@@ -37,6 +37,7 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           {/* <Route exact path="/showpage" component={ShowPage} /> */}
           <Route exact path="/movie/:movieId" component={ViewMovie} />
+          {/* <Route exact path="/profile" component={Profile} /> */}
         </Switch>
       </UserContext.Provider>
     </Router>
