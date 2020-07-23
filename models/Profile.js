@@ -7,6 +7,7 @@ const ProfileSchema = new mongoose.Schema({
   },
   name: {
     type: String,
+    required: true,
   },
   playlists: [
     {

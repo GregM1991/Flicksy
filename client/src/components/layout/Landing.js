@@ -25,7 +25,6 @@ export const Landing = () => {
 
   return (
     <>
-      <div></div>
       {Movies.map((movie, index) => {
         return (
           <SingleMovie

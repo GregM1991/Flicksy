@@ -30,43 +30,47 @@ router.get("/me", auth, async (req, res) => {
 // @route   POST api/profile
 // @desc    Create or update a user profile
 // @access  Private
-router.post("/", auth, async (req, res) => {
-  const { name, playlists } = req.body
+router.post(
+  "/",
+  [auth, check("name", "Please input a name").not().isEmpty()],
+  async (req, res) => {
+    const { name } = req.body
 
-  const profileFields = {}
-  profileFields.user = req.user.id
-  if (name) profileFields.name = name
+    const profileFields = {}
+    profileFields.user = req.user.id
+    if (name) profileFields.name = name
 
-  try {
-    let profile = await Profile.findOne({ user: req.user.id })
-    console.log(req.user.id)
+    try {
+      let profile = await Profile.findOne({ user: req.user.id })
+      console.log(req.user.id)
 
-    if (profile) {
-      // Update
-      profile = await Profile.findOneAndUpdate(
-        { user: req.user.id },
-        { $set: profileFields },
-        { new: true }
-      )
-      console.log("profile updated")
-      return res.json(profile)
+      if (profile) {
+        // Update
+        profile = await Profile.findOneAndUpdate(
+          { user: req.user.id },
+          { $set: profileFields },
+          { new: true }
+        )
+        console.log("profile updated")
+        return res.json(profile)
+      }
+
+      // Create
+      profileFields.playlists = [
+        { playlistname: "watchlist" },
+        { playlistname: "favourites" },
+      ]
+      profile = new Profile(profileFields)
+
+      await profile.save()
+      console.log("New profile saved")
+      res.json(profile)
+    } catch (error) {
+      console.error(error.message)
+      res.status(500).send("Server Error")
     }
-
-    // Create
-    profileFields.playlists = [
-      { playlistname: "watchlist" },
-      { playlistname: "favourites" },
-    ]
-    profile = new Profile(profileFields)
-
-    await profile.save()
-    console.log("New profile saved")
-    res.json(profile)
-  } catch (error) {
-    console.error(error.message)
-    res.status(500).send("Server Error")
   }
-})
+)
 
 // @route   DELETE api/profile
 // @desc    Delete profile & user
