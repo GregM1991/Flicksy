@@ -53,6 +53,10 @@ router.post("/", auth, async (req, res) => {
     }
 
     // Create
+    profileFields.playlists = [
+      { playlistname: "watchlist" },
+      { playlistname: "favourites" },
+    ]
     profile = new Profile(profileFields)
 
     await profile.save()
