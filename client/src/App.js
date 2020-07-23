@@ -4,6 +4,8 @@ import { Login } from "./components/auth/Login"
 import { Register } from "./components/auth/Register"
 import { Navbar } from "./components/layout/Navbar"
 import { Landing } from "./components/layout/Landing"
+import Playlists from '../src/components/Sections/Playlists'
+import PrivateRoute from './components/PrivateRoute'
 import ViewMovie from "./components/Sections/ViewMovie"
 import UserContext from "./context/UserContext"
 import axios from "axios"
@@ -37,7 +39,7 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           {/* <Route exact path="/showpage" component={ShowPage} /> */}
           <Route exact path="/movie/:movieId" component={ViewMovie} />
-          {/* <Route exact path="/profile" component={Profile} /> */}
+          <PrivateRoute exact path="/playlists" component={Playlists} />
         </Switch>
       </UserContext.Provider>
     </Router>

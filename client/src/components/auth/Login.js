@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import UserContext from "../../context/UserContext"
 import { Link, useHistory } from "react-router-dom"
 import axios from "axios"
 
@@ -7,6 +8,7 @@ export const Login = () => {
     email: "",
     password: "",
   })
+  const { setUserData } = useContext(UserContext)
 
   const history = useHistory()
 
@@ -31,8 +33,17 @@ export const Login = () => {
       }
       const body = JSON.stringify(existingUser)
       const res = await axios.post("/api/auth", body, config)
+      const token = res.data.token
       console.log(res.data)
-      localStorage.setItem("token", res.data.token)
+      localStorage.setItem("token", token)
+      const userRes = await axios.get("/api/auth", {
+        headers: { "x-auth-token": token },
+      }) // Sends request to get user back from login route
+      setUserData({
+        // Setting state
+        token,
+        user: userRes.data,
+      })
       console.log("Logged In")
       history.push("/")
     } catch (error) {
