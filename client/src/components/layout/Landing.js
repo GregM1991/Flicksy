@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import { API_URL, API_KEY, IMG_URL } from "../Config"
 import axios from "axios"
 import SingleMovie from "../Sections/SingleMovie"
-import Profile from "../Sections/Profile"
 
 export const Landing = () => {
   const [Movies, setMovies] = useState([])
@@ -25,7 +24,6 @@ export const Landing = () => {
 
   return (
     <>
-      <Profile />
       {Movies.map((movie, index) => {
         return (
           <SingleMovie
