@@ -12,7 +12,7 @@ export const Register = () => {
     password: "",
     password2: "",
   })
-  const [error, setError] = useState()
+  const [error, setError] = useState([])
   // Grab context
   const { setUserData } = useContext(UserContext)
   const history = useHistory()
@@ -43,7 +43,8 @@ export const Register = () => {
           }, // Set headers for response
         }
         const body = JSON.stringify(newUser) // Set body for response
-        await axios.post("/api/users", body, config) // Send request to register user
+        const resData = await axios.post("/api/users", body, config) // Send request to register user
+        localStorage.setItem("token", resData.data.token)
         const token = localStorage.getItem("token")
         const userRes = await axios.get("/api/auth", {
           headers: { "x-auth-token": token },
@@ -57,7 +58,7 @@ export const Register = () => {
         history.push("/") // Returning to Landing page
       } catch (error) {
         console.log(error.response)
-        error.response.data && setError(error.response.data.errors[0].msg)
+        error.response.data.errors && setError(error.response.data.errors)
         console.error(error.response.data.msg)
       }
     }
@@ -65,9 +66,15 @@ export const Register = () => {
   return (
     <>
       <h2>Sign Up</h2>
-      {error && (
-        <ErrorNotice message={error} clearError={() => setError(undefined)} />
-      )}
+      {error.map((e) => {
+        return (
+          <ErrorNotice
+            key={e.msg}
+            message={e.msg}
+            clearError={() => setError([])}
+          />
+        )
+      })}
       <p>Create Your Account</p>
       <form onSubmit={(e) => onSubmit(e)}>
         <input
