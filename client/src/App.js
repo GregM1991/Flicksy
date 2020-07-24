@@ -12,6 +12,12 @@ import axios from "axios"
 import Profile from "./components/Sections/Profile"
 
 const App = () => {
+  const [userProfile, setUserProfile] = useState({
+    user: undefined,
+    name: undefined,
+    playlists: [],
+    reviews: undefined,
+  })
   const [userData, setUserData] = useState({
     token: undefined,
     user: undefined,
@@ -30,9 +36,29 @@ const App = () => {
 
     checkLoggedIn()
   }, [])
+
+  useEffect(() => {
+    const getUserProfile = async () => {
+      const token = localStorage.getItem("token")
+      const profRes = await axios.get("/api/profile/me", {
+        headers: { "x-auth-token": token },
+      })
+      setUserProfile({
+        user: profRes.data.user,
+        name: profRes.data.name,
+        playlists: profRes.data.playlists,
+        reviews: profRes.data.reviews,
+      })
+    }
+
+    getUserProfile()
+  }, [])
+
   return (
     <Router>
-      <UserContext.Provider value={{ userData, setUserData }}>
+      <UserContext.Provider
+        value={{ userData, setUserData, userProfile, setUserProfile }}
+      >
         <Navbar />
         <Route exact path="/" component={Landing} />
         <Switch>
