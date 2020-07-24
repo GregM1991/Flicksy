@@ -8,10 +8,11 @@ const ViewMovie = (props) => {
 
   const [Crews, setCrews] = useState([])
   const movieId = props.match.params.movieId
-  // async () =>{
-  //   const res = await axios.get(`${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`)
-  // console.log(res)
-  // } 
+
+  async function getActors(){
+    const res = await axios.get(`${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`)
+  console.log(res)
+  } 
   
   async function getMovieDetails(){
     const response = await axios.get(
@@ -22,6 +23,7 @@ const ViewMovie = (props) => {
   }
   useEffect(() => {
     getMovieDetails()
+    getActors()
   }, [movieId])
 
   return (
