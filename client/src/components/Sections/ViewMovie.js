@@ -4,9 +4,12 @@ import { API_URL, API_KEY, IMG_URL } from "../Config"
 import UserContext from "../../context/UserContext"
 const ViewMovie = (props) => {
   const { userProfile } = useContext(UserContext)
-  const [getMovie, setGetMovie] = useState("")
 
+  const [getMovie, setGetMovie] = useState("")
   const [Actors, setActors] = useState("")
+
+  const[Toggle, setToggle]= useState(false)
+
   const movieId = props.match.params.movieId
 
   async function getActors(){
@@ -26,6 +29,9 @@ const ViewMovie = (props) => {
     getActors()
   }, [movieId])
 
+  const handleClick = () => {
+    setToggle(!Toggle)
+  }
   return (
     <div>
       <div>
@@ -49,10 +55,12 @@ const ViewMovie = (props) => {
       <div>Rating: {getMovie.vote_average}</div>
 
       <div>
-        <button>Show actors</button>
+        <button onClick={handleClick}>Show actors</button>
       </div>
-
-      <div>
+        
+        {Toggle && 
+        //only when the button is toggle then it will show the actors
+        <div>
         {Actors && Actors.cast.map((actor) => (
           //check if actor have a picture, if not wont render out
           actor.profile_path &&
@@ -73,7 +81,9 @@ const ViewMovie = (props) => {
         </div>
         ))}
       </div>  
-    </div>
+
+        }
+          </div>
   )
 }
 
