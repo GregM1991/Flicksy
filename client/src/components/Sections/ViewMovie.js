@@ -6,19 +6,19 @@ const ViewMovie = (props) => {
   const { userProfile } = useContext(UserContext)
   const [getMovie, setGetMovie] = useState("")
 
-  const [Crews, setCrews] = useState([])
+  const [Actors, setActors] = useState("")
   const movieId = props.match.params.movieId
 
   async function getActors(){
-    const res = await axios.get(`${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`)
-  console.log(res)
+    const respond = await axios.get(`${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`)
+      console.log(respond.data)
+      setActors(respond.data)
   } 
   
   async function getMovieDetails(){
     const response = await axios.get(
       `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`
     )
-    console.log(response)
     setGetMovie(response.data)
   }
   useEffect(() => {
@@ -52,6 +52,27 @@ const ViewMovie = (props) => {
         <button>Show actors</button>
       </div>
 
+      <div>
+        {Actors && Actors.cast.map((actor) => (
+          //check if actor have a picture, if not wont render out
+          actor.profile_path &&
+          <div key={actor.cast_id}>
+            <div
+          style={{
+            backgroundImage: `url(${IMG_URL}w400${actor.profile_path})`,
+            width: "100%",
+            height: "400px",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+
+
+        </div>
+        <div>{actor.name}</div>
+          <div>As {actor.character}</div>
+        </div>
+        ))}
+      </div>  
     </div>
   )
 }
