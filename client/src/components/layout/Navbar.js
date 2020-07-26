@@ -9,6 +9,7 @@ export const Navbar = () => {
         <Link to="/">iFlicks</Link>
       </h1>
       <AuthOptions />
+      <hr />
     </nav>
   )
 }

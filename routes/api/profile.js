@@ -116,6 +116,22 @@ router.put(
   }
 )
 
+// @route   GET api/profile/playlist/:pl_id
+// @desc    Show a profile playlist
+// @access  Private
+router.get("/playlist/:pl_id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id })
+    playlist = profile.playlists.filter(
+      (playlist) => playlist._id.toString() === req.params.pl_id
+    )
+    res.json(playlist)
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send("Server Error")
+  }
+})
+
 // @route   DELETE api/profile/playlist/:pl_id
 // @desc    Delete a profile playlist
 // @access  Private

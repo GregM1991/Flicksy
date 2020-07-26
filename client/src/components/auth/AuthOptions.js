@@ -9,6 +9,7 @@ export default function AuthOptions() {
 
   const register = () => history.push("/register")
   const login = () => history.push("/login")
+  const profile = () => history.push("/profile")
   const logout = () => {
     setUserData({
       token: undefined,
@@ -19,7 +20,10 @@ export default function AuthOptions() {
   return (
     <div>
       {userData.user ? (
-        <button onClick={logout}>Log Out</button>
+        <>
+          <button onClick={profile}>My Profile</button>
+          <button onClick={logout}>Log Out</button>
+        </>
       ) : (
         <>
           <button onClick={register}>Register</button>
