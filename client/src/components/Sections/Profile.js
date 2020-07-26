@@ -8,6 +8,7 @@ export default function Profile() {
 
   return (
     <>
+      {/* Refactor this to be hasProfile */}
       <div>{!userProfile.name ? <CreateProfile /> : <ShowProfile />}</div>
     </>
   )
