@@ -4,7 +4,7 @@ import axios from "axios"
 import SingleMovie from "../Sections/SingleMovie"
 
 export const Landing = () => {
-  const [Movies, setMovies] = useState([])
+  const [movies, setMovies] = useState([])
 
   useEffect(() => {
     async function getMovies() {
@@ -24,7 +24,7 @@ export const Landing = () => {
 
   return (
     <>
-      {Movies.map((movie, index) => {
+      {movies.map((movie, index) => {
         return (
           <SingleMovie
             key={movie.id}
