@@ -7,10 +7,8 @@ export const ShowProfile = () => {
   const history = useHistory()
   const { userProfile } = useContext(UserContext)
 
-  
-  const createPlaylist = () => {
-    history.push("/profile/create-playlist")
-  }
+  const deleteProfile = () => {}
+
   return (
     <>
       <div>My Profile </div>
@@ -20,15 +18,7 @@ export const ShowProfile = () => {
             <h3>{playlist.playlistname}</h3>
           </Link>
         ))}
-      </div>
-      <button onClick={createPlaylist}>Create Playlist</button>
-      <div>Reviews
-        <div>{userProfile.reviews.map(review => (
-        
-          <div key={review.reviewtitle}>{review.reviewtitle}
-            <div key={review.reviewdescription}>{review.reviewdescription}</div>
-          </div>
-        ))}</div>
+        <button onClick={deleteProfile}>Delete Profile</button>
       </div>
     </>
   )

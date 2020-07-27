@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from "react"
 import axios from "axios"
 import { API_URL, API_KEY, IMG_URL } from "../Config"
 import UserContext from "../../context/UserContext"
+import FavouritesButton from "./FavouritesButton"
+import WatchlistButton from "./WatchlistButton"
 const ViewMovie = (props) => {
   const { userProfile } = useContext(UserContext)
 
@@ -55,6 +57,8 @@ const ViewMovie = (props) => {
       <div>{getMovie.runtime} mins</div>
       <div>Release date: {getMovie.release_date}</div>
       <div>Rating: {getMovie.vote_average}</div>
+      <FavouritesButton movieId={movieId} />
+      <WatchlistButton movieId={movieId} />
 
       <div>
         <button onClick={handleClick}>Show actors</button>

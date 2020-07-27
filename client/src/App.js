@@ -5,7 +5,6 @@ import { Register } from "./components/auth/Register"
 import { Navbar } from "./components/layout/Navbar"
 import { Landing } from "./components/layout/Landing"
 import ViewMovie from "./components/Sections/ViewMovie"
-import { CreatePlaylist } from "./components/Sections/CreatePlaylist"
 import UserContext from "./context/UserContext"
 import axios from "axios"
 import Profile from "./components/Sections/Profile"
@@ -67,11 +66,6 @@ const App = () => {
           <Route exact path="/movie/:movieId" component={ViewMovie} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/playlist/:playlistId" component={ViewPlaylist} />
-          <Route
-            exact
-            path="/profile/create-playlist"
-            component={CreatePlaylist}
-          />
         </Switch>
       </UserContext.Provider>
     </Router>
