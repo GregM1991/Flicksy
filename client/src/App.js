@@ -10,6 +10,7 @@ import UserContext from "./context/UserContext"
 import axios from "axios"
 import Profile from "./components/Sections/Profile"
 import ViewPlaylist from "./components/Sections/ViewPlaylist"
+import SearchMovie from "./components/Sections/SearchMovie"
 
 const App = () => {
   const [userProfile, setUserProfile] = useState({
@@ -61,6 +62,7 @@ const App = () => {
       >
         <Navbar />
         <Route exact path="/" component={Landing} />
+        <Route exact path="/search" component={SearchMovie} />
         <Switch>
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
