@@ -1,7 +1,7 @@
-import React, { useState} from "react"
+import React, { useState, useContext } from "react"
 import axios from "axios"
 import ErrorNotice from "../misc/ErrorNotice"
-
+import UserContext from "../../context/UserContext"
 
 export default function CreateProfile() {
   const { setUserProfile } = useContext(UserContext)
