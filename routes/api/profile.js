@@ -125,8 +125,6 @@ router.delete("/review", auth, async (req, res) => {
   }
 })
 
-
-
 // @route   DELETE api/profile
 // @desc    Delete profile & user
 // @access  Private
@@ -160,7 +158,7 @@ router.put(
 
     try {
       const profile = await Profile.findOne({ user: req.user.id })
-      profile.playlists.unshift(newPlaylist)
+      profile.playlists.push(newPlaylist)
 
       await profile.save()
       res.json(profile)
