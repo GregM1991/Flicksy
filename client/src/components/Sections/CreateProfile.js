@@ -4,7 +4,7 @@ import ErrorNotice from "../misc/ErrorNotice"
 import UserContext from "../../context/UserContext"
 
 export default function CreateProfile() {
-  const { userProfile, setUserProfile } = useContext(UserContext)
+  const { setUserProfile } = useContext(UserContext)
   const [formData, setFormData] = useState({
     name: "",
   })
@@ -31,6 +31,12 @@ export default function CreateProfile() {
       }
       const body = JSON.stringify(newProfile)
       const profileRes = await axios.post("/api/profile", body, config)
+      setUserProfile({
+        user: profileRes.data.user,
+        name: profileRes.data.name,
+        playlists: profileRes.data.playlists,
+        reviews: profileRes.data.reviews,
+      })
       console.log(profileRes.data)
       console.log("Success")
       // history.push("/Profile")

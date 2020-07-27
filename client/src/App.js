@@ -9,6 +9,7 @@ import { CreatePlaylist } from "./components/Sections/CreatePlaylist"
 import UserContext from "./context/UserContext"
 import axios from "axios"
 import Profile from "./components/Sections/Profile"
+import ViewPlaylist from "./components/Sections/ViewPlaylist"
 
 const App = () => {
   const [userProfile, setUserProfile] = useState({
@@ -65,6 +66,7 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/movie/:movieId" component={ViewMovie} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/playlist/:playlistId" component={ViewPlaylist} />
           <Route
             exact
             path="/profile/create-playlist"
