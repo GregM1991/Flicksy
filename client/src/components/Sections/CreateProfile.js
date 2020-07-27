@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react"
+import React, { useState} from "react"
 import axios from "axios"
 import ErrorNotice from "../misc/ErrorNotice"
-import UserContext from "../../context/UserContext"
+
 
 export default function CreateProfile() {
-  const { userProfile, setUserProfile } = useContext(UserContext)
   const [formData, setFormData] = useState({
     name: "",
   })
