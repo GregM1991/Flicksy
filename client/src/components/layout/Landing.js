@@ -24,7 +24,7 @@ export const Landing = () => {
 
   return (
     <>
-      {movies.map((movie, index) => {
+      {movies.map((movie) => {
         return (
           <SingleMovie
             key={movie.id}

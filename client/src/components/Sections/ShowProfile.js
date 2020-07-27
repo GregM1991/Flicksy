@@ -1,8 +1,7 @@
 import React, { useContext } from "react"
-import SinglePlaylist from "./SinglePlaylist"
 import UserContext from "../../context/UserContext"
 import { useHistory } from "react-router-dom"
-// import Playlists from "./Playlists"
+import { Link } from "react-router-dom"
 
 export const ShowProfile = () => {
   const history = useHistory()
@@ -17,7 +16,9 @@ export const ShowProfile = () => {
       <div>My Profile </div>
       <div>
         {userProfile.playlists.map((playlist) => (
-          <SinglePlaylist key={playlist._id.toString()} />
+          <Link key={playlist._id} to={`/playlist/${playlist._id.toString()}`}>
+            <h3>{playlist.playlistname}</h3>
+          </Link>
         ))}
       </div>
       <button onClick={createPlaylist}>Create Playlist</button>

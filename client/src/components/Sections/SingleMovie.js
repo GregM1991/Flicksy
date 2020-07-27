@@ -13,9 +13,9 @@ const SingleMovie = (props) => {
             backgroundRepeat: "no-repeat",
           }}
         ></div>
+        <span>{props.title}</span>
+        <p>{props.text}</p>
       </Link>
-      <span>{props.title}</span>
-      <p>{props.text}</p>
     </>
   )
 }
