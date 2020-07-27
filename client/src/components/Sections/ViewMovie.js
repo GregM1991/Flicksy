@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react"
 import axios from "axios"
 import { API_URL, API_KEY, IMG_URL } from "../Config"
 import UserContext from "../../context/UserContext"
+import Favorite from "./Favorite"
 const ViewMovie = (props) => {
   const { userProfile } = useContext(UserContext)
 
@@ -9,6 +10,7 @@ const ViewMovie = (props) => {
   const [Actors, setActors] = useState("")
 
   const[Toggle, setToggle]= useState(false)
+
 
   const movieId = props.match.params.movieId
 
@@ -32,6 +34,7 @@ const ViewMovie = (props) => {
   const handleClick = () => {
     setToggle(!Toggle)
   }
+  
   return (
     <div>
       <div>
@@ -53,6 +56,8 @@ const ViewMovie = (props) => {
       <div>{getMovie.runtime} mins</div>
       <div>Release date: {getMovie.release_date}</div>
       <div>Rating: {getMovie.vote_average}</div>
+
+      <Favorite/> 
 
       <div>
         <button onClick={handleClick}>Show actors</button>
