@@ -10,7 +10,6 @@ export default function ViewPlaylist(props) {
 
   return (
     <>
-      <p>hello</p>
       <h1>{currentPlaylist && currentPlaylist.playlistname}</h1>
       <ul>
         {currentPlaylist && currentPlaylist.playlist ? (
