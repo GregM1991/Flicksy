@@ -7,7 +7,6 @@ import ErrorNotice from "../misc/ErrorNotice"
 // State setup
 export const Register = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
     password2: "",
@@ -18,7 +17,7 @@ export const Register = () => {
   const history = useHistory()
 
   // Destructure form data
-  const { name, email, password, password2 } = formData
+  const { email, password, password2 } = formData
 
   // Passing form data in dynamically
   const onChange = (e) =>
@@ -32,7 +31,6 @@ export const Register = () => {
     } else {
       const newUser = {
         // Create new user from formData
-        name,
         email,
         password,
       }
@@ -77,13 +75,6 @@ export const Register = () => {
       })}
       <p>Create Your Account</p>
       <form onSubmit={(e) => onSubmit(e)}>
-        <input
-          type="text"
-          placeholder="Name"
-          name="name"
-          value={name}
-          onChange={(e) => onChange(e)}
-        />
         <input
           type="text"
           placeholder="Email"

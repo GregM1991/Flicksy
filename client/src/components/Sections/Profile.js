@@ -1,4 +1,3 @@
-
 import React, { useContext } from "react"
 import UserContext from "../../context/UserContext"
 import CreateProfile from "./CreateProfile"
@@ -11,7 +10,6 @@ export default function Profile() {
     <>
       {/* Refactor this to be hasProfile */}
       <div>{!userProfile.name ? <CreateProfile /> : <ShowProfile />}</div>
-      
     </>
   )
 }

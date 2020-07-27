@@ -5,7 +5,7 @@ import UserContext from "../../context/UserContext"
 export default function FavouritesButton(props) {
   const { userProfile } = useContext(UserContext)
   const saveMovie = async (movieId) => {
-    if (userProfile.playlists[1]) {
+    if (userProfile.playlists[0]) {
       const newMovie = {
         movieurl: movieId,
       }
@@ -13,8 +13,8 @@ export default function FavouritesButton(props) {
       const token = localStorage.getItem("token")
 
       try {
-        // Need to show if movie has been added to favourites
-        const playlistId = userProfile.playlists[1]._id.toString()
+        const playlistId = userProfile.playlists[0]._id.toString()
+        console.log(playlistId)
         const config = {
           headers: {
             "Content-Type": "application/json",
@@ -36,9 +36,7 @@ export default function FavouritesButton(props) {
 
   return (
     <>
-      <button onClick={() => saveMovie(props.movieId)}>
-        Add to Favourites
-      </button>
+      <button onClick={() => saveMovie(props.movieId)}>Add to Watchlist</button>
     </>
   )
 }
