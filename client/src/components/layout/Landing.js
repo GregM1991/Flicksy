@@ -2,9 +2,16 @@ import React, { useEffect, useState } from "react"
 import { API_URL, API_KEY, IMG_URL } from "../Config"
 import axios from "axios"
 import SingleMovie from "../Sections/SingleMovie"
+import SearchMovie from "../Sections/SearchMovie"
 
 export const Landing = () => {
   const [movies, setMovies] = useState([])
+
+  const [Searched, setSearched] = useState(false)
+  //the function that change the state of Searched
+  function hasSearched(){
+    setSearched(true)
+  }
 
   useEffect(() => {
     async function getMovies() {
@@ -24,7 +31,10 @@ export const Landing = () => {
 
   return (
     <>
-      {movies.map((movie) => {
+    {/* pass the hasSearched function to the SearchMovie component */}
+    <SearchMovie hasSearched={hasSearched}/>  
+    {/* if user searched something, the default movies wont get rendered on the landing page */}
+      {!Searched && movies.map((movie) => {
         return (
           <SingleMovie
             key={movie.id}

@@ -6,10 +6,11 @@ export const Navbar = () => {
   return (
     <nav>
       <h1>
-        <Link to="/">iFlicks</Link>
+        <Link to="/">iFlicks</Link><br/>
       </h1>
       <AuthOptions />
       <hr />
+      
     </nav>
   )
 }
