@@ -3,7 +3,7 @@ import axios from "axios"
 import UserContext from "../../context/UserContext"
 
 export default function FavouritesButton(props) {
-  const { userProfile } = useContext(UserContext)
+  const { userProfile, setUserProfile } = useContext(UserContext)
   const saveMovie = async (movieId) => {
     if (userProfile.playlists[0]) {
       const newMovie = {
@@ -14,7 +14,6 @@ export default function FavouritesButton(props) {
 
       try {
         const playlistId = userProfile.playlists[0]._id.toString()
-        console.log(playlistId)
         const config = {
           headers: {
             "Content-Type": "application/json",
@@ -27,7 +26,7 @@ export default function FavouritesButton(props) {
           body,
           config
         )
-        console.log(resMovie)
+        setUserProfile(resMovie.data)
       } catch (error) {
         console.log(error.response)
       }
