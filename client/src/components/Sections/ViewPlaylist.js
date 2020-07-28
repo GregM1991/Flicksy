@@ -7,7 +7,10 @@ import { API_URL, API_KEY, IMG_URL } from "../Config"
 export default function ViewPlaylist(props) {
   const { userProfile } = useContext(UserContext)
   const [Movies, setMovies] = useState([])
-
+  const playlistName = userProfile.playlists.find(
+    (playlist) => playlist._id.toString() === props.match.params.playlistId
+  ).playlistname
+  console.log(playlistName)
   const currentPlaylist = userProfile.playlists.find(
     (playlist) => playlist._id.toString() === props.match.params.playlistId
   ).playlist
@@ -49,10 +52,10 @@ export default function ViewPlaylist(props) {
       console.error(error)
     }
   }
-  console.log(Movies)
+
   return (
     <>
-      <h1>Playlist</h1>
+      <h1>{playlistName}</h1>
       <div>
         {Movies.map((movie) => {
           return (
