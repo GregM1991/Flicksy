@@ -46,8 +46,10 @@ const SearchMovie = (props) => {
                 <input type="submit" value="search"></input>
             </form>
             <div>
-                {moviesData.map(movie =>{
+                {moviesData.map(movie =>{ 
                     return(
+                        // if movie doesnt have a poster it wont be rendered
+                        movie.backdrop_path &&
                         <SingleMovie
                             key={movie.id}
                             image={`${IMG_URL}w400${movie.backdrop_path}`}
