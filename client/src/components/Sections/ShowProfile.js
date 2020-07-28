@@ -1,13 +1,20 @@
 import React, { useContext } from "react"
 import UserContext from "../../context/UserContext"
-import { useHistory } from "react-router-dom"
 import { Link } from "react-router-dom"
+import axios from "axios"
 
 export const ShowProfile = () => {
-  const history = useHistory()
   const { userProfile } = useContext(UserContext)
-
-  const deleteProfile = () => {}
+  const token = localStorage.getItem("token")
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": token,
+    },
+  }
+  const deleteProfile = () => {
+    axios.delete(`/api/profile`, config) 
+  }
 
   return (
     <>
@@ -18,7 +25,7 @@ export const ShowProfile = () => {
             <h3>{playlist.playlistname}</h3>
           </Link>
         ))}
-        <button onClick={deleteProfile}>Delete Profile</button>
+        <button onClick={deleteProfile}> Delete Profile </button>
       </div>
     </>
   )
