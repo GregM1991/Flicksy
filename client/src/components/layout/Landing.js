@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { API_URL, API_KEY, IMG_URL } from "../Config"
 import axios from "axios"
 import SingleMovie from "../Sections/SingleMovie"
+import SearchMovie from "../Sections/SearchMovie"
 
 export const Landing = () => {
   const [movies, setMovies] = useState([])
@@ -24,6 +25,7 @@ export const Landing = () => {
 
   return (
     <>
+    <SearchMovie/>  
       {movies.map((movie) => {
         return (
           <SingleMovie

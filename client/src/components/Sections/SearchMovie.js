@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import axios from "axios"
-import { API_URL, API_KEY } from "../Config"
+import { API_URL, API_KEY, IMG_URL } from "../Config"
+import SingleMovie from './SingleMovie'
 
 
 
 const SearchMovie = () => {
    
     const [formData, setFormData] = useState("")
-    const [moviesData, setMoviesData] = useState("")
+    const [moviesData, setMoviesData] = useState([])
     //when submitted it's gonna fetch the formData
     const setOnSubmit = (e) =>{
         e.preventDefault()
@@ -17,8 +18,8 @@ const SearchMovie = () => {
         async function getMovies() {
             const response = await axios.get(
               `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${formData}&page=1`)
-            console.log(response);
-            setMoviesData(response)
+            console.log(response.data);
+            setMoviesData(response.data.results)
           }
         //when the submit button is clicked, getMovie function get called
         getMovies()
@@ -39,6 +40,18 @@ const SearchMovie = () => {
                     </input>
                 <input type="submit" value="search"></input>
             </form>
+            <div>
+                {moviesData.map(movie =>{
+                    return(
+                        <SingleMovie
+                            key={movie.id}
+                            image={`${IMG_URL}w400${movie.backdrop_path}`}
+                            title={movie.original_title}
+                            text={movie.overview}
+                            movieId={movie.id}/>
+                    )
+                })}
+            </div>
         </div>
     )
 }
