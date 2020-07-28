@@ -7,6 +7,12 @@ import SearchMovie from "../Sections/SearchMovie"
 export const Landing = () => {
   const [movies, setMovies] = useState([])
 
+  const [Searched, setSearched] = useState(false)
+  //the function that change the state of Searched
+  function hasSearched(){
+    setSearched(true)
+  }
+
   useEffect(() => {
     async function getMovies() {
       try {
@@ -25,8 +31,10 @@ export const Landing = () => {
 
   return (
     <>
-    <SearchMovie/>  
-      {movies.map((movie) => {
+    {/* pass the hasSearched function to the SearchMovie component */}
+    <SearchMovie hasSearched={hasSearched}/>  
+    {/* if user searched something, the default movies wont get rendered on the landing page */}
+      {!Searched && movies.map((movie) => {
         return (
           <SingleMovie
             key={movie.id}

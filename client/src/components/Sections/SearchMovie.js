@@ -5,13 +5,14 @@ import SingleMovie from './SingleMovie'
 
 
 
-const SearchMovie = () => {
-   
+const SearchMovie = (props) => {
+    const {hasSearched} = props
     const [formData, setFormData] = useState("")
     const [moviesData, setMoviesData] = useState([])
     //when submitted it's gonna fetch the formData
     const setOnSubmit = (e) =>{
         e.preventDefault()
+        
 
         console.log('submited');
         // function that take the formData and put it in the query params
@@ -23,6 +24,10 @@ const SearchMovie = () => {
           }
         //when the submit button is clicked, getMovie function get called
         getMovies()
+        //when the data is submitted, the hasSearched function get call and change the state of Searched 
+        .then(()=>{
+            hasSearched()
+        })
     
     }
     
