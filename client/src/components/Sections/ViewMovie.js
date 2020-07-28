@@ -33,13 +33,26 @@ const ViewMovie = (props) => {
     getActors()
   }, [movieId])
 
-  const isInPlaylist = () => {
-    console.log(userProfile)
+  const isInFavouritesPlaylist = () => {
     const movieArr = userProfile.playlists[1].playlist.filter(
       (movie) => movie.movieurl === movieId
     )
-    console.log(movieArr)
-    // if (movieArr.length > 0)
+    if (movieArr.length > 0) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  const isInWatchlistPlaylist = () => {
+    const movieArr = userProfile.playlists[0].playlist.filter(
+      (movie) => movie.movieurl === movieId
+    )
+    if (movieArr.length > 0) {
+      return true
+    } else {
+      return false
+    }
   }
 
   const handleClick = () => {
@@ -61,15 +74,15 @@ const ViewMovie = (props) => {
       <span>{getMovie.runtime} mins</span>
       <span>Release date: {getMovie.release_date}</span>
       <span>Rating: {getMovie.vote_average}</span>
-      {isInPlaylist() ? (
+      {isInFavouritesPlaylist() ? (
+        <button>Added to Favourites</button>
+      ) : (
         <FavouritesButton movieId={movieId} />
-      ) : (
-        <button>Added to Playlist</button>
       )}
-      {isInPlaylist() ? (
-        <WatchlistButton movieId={movieId} />
-      ) : (
+      {isInWatchlistPlaylist() ? (
         <button>Added to Watchilst</button>
+      ) : (
+        <WatchlistButton movieId={movieId} />
       )}
 
       <div>

@@ -36,9 +36,11 @@ const App = () => {
   useEffect(() => {
     const getUserProfile = async () => {
       const token = localStorage.getItem("token")
+      console.log(token)
       const profRes = await axios.get("/api/profile/me", {
         headers: { "x-auth-token": token },
       })
+      console.log(profRes.data)
       setUserProfile({
         user: profRes.data.user,
         name: profRes.data.name,
@@ -60,10 +62,11 @@ const App = () => {
         <Switch>
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/profile" component={Profile} />
           {userProfile && (
             <>
               <Route exact path="/movie/:movieId" component={ViewMovie} />
-              <Route exact path="/profile" component={Profile} />
+
               <Route
                 exact
                 path="/playlist/:playlistId"
