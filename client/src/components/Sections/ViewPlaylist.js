@@ -10,9 +10,9 @@ export default function ViewPlaylist(props) {
 
   return (
     <>
-      <h1>{currentPlaylist && currentPlaylist.playlistname}</h1>
+      <h1>{currentPlaylist.playlistname}</h1>
       <ul>
-        {currentPlaylist && currentPlaylist.playlist ? (
+        {currentPlaylist.playlist ? (
           currentPlaylist.playlist.map((movie) => (
             <li key={movie._id}>{movie.movieurl}</li>
           ))

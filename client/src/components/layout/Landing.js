@@ -38,7 +38,7 @@ export const Landing = () => {
         return (
           <SingleMovie
             key={movie.id}
-            image={`${IMG_URL}w400${movie.backdrop_path}`}
+            image={`${IMG_URL}w200${movie.poster_path}`}
             title={movie.original_title}
             text={movie.overview}
             movieId={movie.id}

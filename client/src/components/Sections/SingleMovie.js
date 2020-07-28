@@ -8,8 +8,8 @@ const SingleMovie = (props) => {
         <div
           style={{
             backgroundImage: `url(${props.image})`,
-            width: "100%",
-            height: "100px",
+            width: "auto",
+            height: "300px",
             backgroundRepeat: "no-repeat",
           }}
         ></div>
