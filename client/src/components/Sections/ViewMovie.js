@@ -6,14 +6,13 @@ import FavouritesButton from "./FavouritesButton"
 import WatchlistButton from "./WatchlistButton"
 const ViewMovie = (props) => {
   const { userProfile } = useContext(UserContext)
-
+  // Sets state
   const [getMovie, setGetMovie] = useState("")
   const [Actors, setActors] = useState("")
-
   const [Toggle, setToggle] = useState(false)
-
+  // grabs movie from params
   const movieId = props.match.params.movieId
-
+  // Grabs actors from API
   async function getActors() {
     const respond = await axios.get(
       `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`
@@ -21,11 +20,12 @@ const ViewMovie = (props) => {
     console.log(respond.data)
     setActors(respond.data)
   }
-
+  // Gets movie details, sets to state
   async function getMovieDetails() {
     const response = await axios.get(
       `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`
     )
+    console.log(response.data)
     setGetMovie(response.data)
   }
   useEffect(() => {
@@ -33,32 +33,44 @@ const ViewMovie = (props) => {
     getActors()
   }, [movieId])
 
+  const isInPlaylist = () => {
+    console.log(userProfile)
+    const movieArr = userProfile.playlists[1].playlist.filter(
+      (movie) => movie.movieurl === movieId
+    )
+    console.log(movieArr)
+    // if (movieArr.length > 0)
+  }
+
   const handleClick = () => {
     setToggle(!Toggle)
   }
   return (
     <div>
-      <div>
-        {userProfile.playlists.map((playlist) => (
-          <div key={playlist.playlistname}>{playlist.playlistname}</div>
-        ))}
-      </div>
       <div
         style={{
-          backgroundImage: `url(${IMG_URL}w400${getMovie.backdrop_path})`,
-          width: "100%",
-          height: "100px",
+          backgroundImage: `url(${IMG_URL}w200${getMovie.poster_path})`,
+          width: "auto",
+          height: "300px",
           backgroundRepeat: "no-repeat",
         }}
       ></div>
 
-      <div>{getMovie.title}</div>
-      <div>{getMovie.overview}</div>
-      <div>{getMovie.runtime} mins</div>
-      <div>Release date: {getMovie.release_date}</div>
-      <div>Rating: {getMovie.vote_average}</div>
-      <FavouritesButton movieId={movieId} />
-      <WatchlistButton movieId={movieId} />
+      <h1>{getMovie.title}</h1>
+      <p>{getMovie.overview}</p>
+      <span>{getMovie.runtime} mins</span>
+      <span>Release date: {getMovie.release_date}</span>
+      <span>Rating: {getMovie.vote_average}</span>
+      {isInPlaylist() ? (
+        <FavouritesButton movieId={movieId} />
+      ) : (
+        <button>Added to Playlist</button>
+      )}
+      {isInPlaylist() ? (
+        <WatchlistButton movieId={movieId} />
+      ) : (
+        <button>Added to Watchilst</button>
+      )}
 
       <div>
         <button onClick={handleClick}>Show actors</button>

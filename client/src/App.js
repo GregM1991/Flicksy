@@ -11,17 +11,13 @@ import Profile from "./components/Sections/Profile"
 import ViewPlaylist from "./components/Sections/ViewPlaylist"
 
 const App = () => {
-  const [userProfile, setUserProfile] = useState({
-    user: undefined,
-    name: undefined,
-    playlists: [],
-    reviews: undefined,
-  })
+  const [userProfile, setUserProfile] = useState(null)
   const [userData, setUserData] = useState({
     token: undefined,
     user: undefined,
   })
   useEffect(() => {
+    console.log("in first useEffect")
     const checkLoggedIn = async () => {
       const token = localStorage.getItem("token")
       const userRes = await axios.get("/api/auth", {
@@ -63,9 +59,17 @@ const App = () => {
         <Switch>
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/movie/:movieId" component={ViewMovie} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/playlist/:playlistId" component={ViewPlaylist} />
+          {userProfile && (
+            <>
+              <Route exact path="/movie/:movieId" component={ViewMovie} />
+              <Route exact path="/profile" component={Profile} />
+              <Route
+                exact
+                path="/playlist/:playlistId"
+                component={ViewPlaylist}
+              />
+            </>
+          )}
         </Switch>
       </UserContext.Provider>
     </Router>
