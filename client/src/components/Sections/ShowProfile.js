@@ -1,11 +1,12 @@
 import React, { useContext } from "react"
 import UserContext from "../../context/UserContext"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import axios from "axios"
 
 export const ShowProfile = () => {
-  const { userProfile } = useContext(UserContext)
+  const { userProfile, setUserProfile, setUserData } = useContext(UserContext)
   const token = localStorage.getItem("token")
+  const history = useHistory()
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -13,7 +14,14 @@ export const ShowProfile = () => {
     },
   }
   const deleteProfile = () => {
-    axios.delete(`/api/profile`, config) 
+    axios.delete(`/api/profile`, config)
+    localStorage.setItem("token", "")
+    setUserProfile(null)
+    setUserData({
+      token: undefined,
+      user: undefined
+    })
+    history.push('/')
   }
 
   return (
