@@ -40,7 +40,6 @@ const App = () => {
       const profRes = await axios.get("/api/profile/me", {
         headers: { "x-auth-token": token },
       })
-      console.log(profRes.data)
       setUserProfile({
         user: profRes.data.user,
         name: profRes.data.name,
@@ -66,7 +65,6 @@ const App = () => {
           {userProfile && (
             <>
               <Route exact path="/movie/:movieId" component={ViewMovie} />
-
               <Route
                 exact
                 path="/playlist/:playlistId"
