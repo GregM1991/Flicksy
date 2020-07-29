@@ -27,7 +27,7 @@ export const Landing = () => {
         `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${currentPage}`
       )
       setMovies(res.data.results)
-      console.log(res.data.results)
+      console.log(res)
     } catch (err) {
       console.log(err)
     }
@@ -39,7 +39,7 @@ export const Landing = () => {
         `${API_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
       )
       setTopRated(res.data.results)
-      console.log(res.data.results)
+      console.log(res)
     } catch (err) {
       console.log(err)
     }
@@ -51,16 +51,30 @@ export const Landing = () => {
 
   }, [])
   useEffect(() => {
+    console.log(currentPage)
     getMovies()
+
   },[currentPage])
 
-  
+  function handleNext(){
+    setCurrentPage(currentPage + 1)
+    console.log('clicked')
+  }
+  function handlePrevious(){
+    setCurrentPage(currentPage - 1)
+    console.log('clicked')
+  }
 
   return (
     <>
     {/* pass the hasSearched function to the SearchMovie component */}
     <SearchMovie hasSearched={hasSearched}/>  
     <h1>Popular Movies</h1>
+    <button onClick={handleNext}>Next</button>
+    {
+      currentPage >1 && <button onClick={handlePrevious}>Previous</button>
+    }
+    
     {/* if user searched something, the default movies wont get rendered on the landing page */}
       {!Searched && movies.map((movie) => {
         return (
