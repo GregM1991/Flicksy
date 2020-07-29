@@ -70,15 +70,16 @@ export const Landing = () => {
     {/* pass the hasSearched function to the SearchMovie component */}
     <SearchMovie hasSearched={hasSearched}/>  
     <h1>Popular Movies</h1>
-    <button onClick={handleNext}>Next</button>
-    {
-      currentPage >1 && <button onClick={handlePrevious}>Previous</button>
-    }
+    
+    {currentPage < 500 && <button onClick={handleNext}>Next</button>}
+    {currentPage >1 && <button onClick={handlePrevious}>Previous</button>}
     
     {/* if user searched something, the default movies wont get rendered on the landing page */}
       {!Searched && movies.map((movie) => {
+
         return (
-        
+          // only render out movies that has poster
+          movie.poster_path &&
           <SingleMovie
             key={movie.id}
             image={`${IMG_URL}w200${movie.poster_path}`}
@@ -94,7 +95,8 @@ export const Landing = () => {
     <h1>Top Rated Movies</h1>
     {!Searched && topRated.map((movie) => {
         return (
-        
+          // only render out movies that has poster
+          movie.poster_path &&
           <SingleMovie
             key={movie.id}
             image={`${IMG_URL}w200${movie.poster_path}`}
