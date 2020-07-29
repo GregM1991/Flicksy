@@ -38,7 +38,7 @@ export const Landing = () => {
   async function getTopRatedMovies() {
     try {
       const res = await axios.get(
-        `${API_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&page=${currentPagePopular}`
+        `${API_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&page=${currentPageTopRated}`
       )
       setTopRated(res.data.results)
       console.log(res)
