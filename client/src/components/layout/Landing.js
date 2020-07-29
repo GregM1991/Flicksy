@@ -12,9 +12,13 @@ export const Landing = () => {
 
   const [topRated, setTopRated] = useState([])
 
+  const [nowPlaying, setNowPlaying] = useState([])
+
   const [currentPagePopular, setCurrentPagePopular] = useState(1)
 
   const [currentPageTopRated, setCurrentPageTopRated] =  useState(1)
+
+  const [currentPageNowPlaying, setCurrentPageNowPlaying] =  useState(1)
 
 
 
@@ -46,16 +50,29 @@ export const Landing = () => {
       console.log(err)
     }
   }
+
+  async function getNowPlayingMovies() {
+    try {
+      const res = await axios.get(
+        `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=${currentPageNowPlaying}`
+      )
+      setNowPlaying(res.data.results)
+      console.log(res)
+    } catch (err) {
+      console.log(err)
+    }
+  }
   
   useEffect(() => {
-    
   getTopRatedMovies()
-
   }, [currentPageTopRated])
-  useEffect(() => {
-   
-    getMovies()
 
+  useEffect(() => {
+    getNowPlayingMovies()
+    }, [currentPageNowPlaying])
+
+  useEffect(() => {
+    getMovies()
   },[currentPagePopular])
 
   function handleNextMovies(){
@@ -68,6 +85,11 @@ export const Landing = () => {
     setCurrentPageTopRated(currentPageTopRated + 1)}
   function handlePreviousTopRated(){
     setCurrentPageTopRated(currentPageTopRated - 1)}
+
+  function handleNextNowPlaying(){
+    setCurrentPageNowPlaying(currentPageNowPlaying + 1)}
+  function handlePreviousNowPlaying(){
+    setCurrentPageNowPlaying(currentPageNowPlaying - 1)}
 
   return (
     <>
@@ -99,6 +121,23 @@ export const Landing = () => {
           {currentPageTopRated < 380 && <button onClick={handleNextTopRated}>Next</button>}
           {currentPageTopRated >1 && <button onClick={handlePreviousTopRated}>Previous</button>}
           {topRated.map((movie) => {
+              return (
+                // only render out movies that has poster
+                movie.poster_path &&
+                <SingleMovie
+                  key={movie.id}
+                  image={`${IMG_URL}w200${movie.poster_path}`}
+                  title={movie.original_title}
+                  text={movie.overview}
+                  movieId={movie.id}
+                />
+              )
+          })}
+
+          <h1>NowPlaying Movies</h1>
+          {currentPageNowPlaying < 14 && <button onClick={handleNextNowPlaying}>Next</button>}
+          {currentPageNowPlaying >1 && <button onClick={handlePreviousNowPlaying}>Previous</button>}
+          {nowPlaying.map((movie) => {
               return (
                 // only render out movies that has poster
                 movie.poster_path &&
