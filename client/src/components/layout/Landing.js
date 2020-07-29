@@ -12,7 +12,7 @@ export const Landing = () => {
 
   const [topRated, setTopRated] = useState([])
 
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPagePopular, setCurrentPagePopular] = useState(1)
 
 
 
@@ -24,7 +24,7 @@ export const Landing = () => {
   async function getMovies() {
     try {
       const res = await axios.get(
-        `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${currentPage}`
+        `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${currentPagePopular}`
       )
       setMovies(res.data.results)
       console.log(res)
@@ -51,17 +51,17 @@ export const Landing = () => {
 
   }, [])
   useEffect(() => {
-    console.log(currentPage)
+   
     getMovies()
 
-  },[currentPage])
+  },[currentPagePopular])
 
-  function handleNext(){
-    setCurrentPage(currentPage + 1)
+  function handleNextMovies(){
+    setCurrentPagePopular(currentPagePopular + 1)
     console.log('clicked')
   }
-  function handlePrevious(){
-    setCurrentPage(currentPage - 1)
+  function handlePreviousMovies(){
+    setCurrentPagePopular(currentPagePopular - 1)
     console.log('clicked')
   }
 
@@ -71,8 +71,8 @@ export const Landing = () => {
     <SearchMovie hasSearched={hasSearched}/>  
     <h1>Popular Movies</h1>
     
-    {currentPage < 500 && <button onClick={handleNext}>Next</button>}
-    {currentPage >1 && <button onClick={handlePrevious}>Previous</button>}
+    {currentPagePopular < 500 && <button onClick={handleNextMovies}>Next</button>}
+    {currentPagePopular >1 && <button onClick={handlePreviousMovies}>Previous</button>}
     
     {/* if user searched something, the default movies wont get rendered on the landing page */}
       {!Searched && movies.map((movie) => {
