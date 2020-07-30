@@ -48,22 +48,23 @@ export default function CreateProfile() {
   }
 
   return (
-    <>
-      <h2>Your Profile</h2>
-      {error && (
-        <ErrorNotice message={error} clearError={() => setError(undefined)} />
-      )}
-      <p>Create Your Profile</p>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <input
-          type="text"
-          placeholder="Name"
-          name="name"
-          value={name}
-          onChange={(e) => onChange(e)}
-        />
-        <input type="submit" value="Profile" />
-      </form>
-    </>
+    <div className="flex-container">
+      <div className="form-container">
+        <h2 className="form-header">Create Your Profile</h2>
+        {error && (
+          <ErrorNotice message={error} clearError={() => setError(undefined)} />
+        )}
+        <form onSubmit={(e) => onSubmit(e)}>
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            value={name}
+            onChange={(e) => onChange(e)}
+          />
+          <input type="submit" value="Create Profile" />
+        </form>
+      </div>
+    </div>
   )
 }

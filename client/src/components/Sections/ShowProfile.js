@@ -26,7 +26,7 @@ export const ShowProfile = () => {
 
   return (
     <div className="profile-container">
-      <h2>Hello {userProfile.name}</h2>
+      <h2>Hello, {userProfile.name}</h2>
       <div className="playlists-wrapper">
         {userProfile.playlists.map((playlist) => (
           <div className="playlist">

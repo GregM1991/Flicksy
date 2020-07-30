@@ -267,11 +267,6 @@ h6 {
   grid-template-rows: auto;
 }
 
-.profile-container h2 {
-  grid-column: 3/7;
-  font-size: 4rem;
-}
-
 .playlists-wrapper {
   grid-column: 4/10;
   grid-row: 2;
@@ -308,6 +303,11 @@ h6 {
 
 .playlist a {
   color: var(--light-color);
+}
+
+.profile-container h2 {
+  grid-column: 3/10;
+  font-size: 4rem;
 }
 
 .profile-container .button {
