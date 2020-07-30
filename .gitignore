@@ -1,4 +1,4 @@
 node_modules/
-clilent/node_modules
-clilent/yarn.lock
+client/node_modules
+client/yarn.lock
 config/default.json
