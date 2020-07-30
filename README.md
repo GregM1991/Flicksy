@@ -2,7 +2,7 @@
 ## Jeremy W, Greg M, Hai H
 
 ### Github Repo: https://github.com/GregM1991/Flicksy
-### Website URL: 
+### Website URL: https://flicksy.herokuapp.com/
 
 ## Application Outline
 The purpose of this application is for users to view and search a large library of movies for the user to decide what to watch by viewing movie trailers, images, descriptions and user reviews, while also added social aspects by users being able to create a user profile that will display user information, their movie reviews and movie playlists.
