@@ -62,47 +62,52 @@ export const Register = () => {
     }
   }
   return (
-    <>
-      <h2>Sign Up</h2>
-      {error.map((e) => {
-        return (
-          <ErrorNotice
-            key={e.msg}
-            message={e.msg}
-            clearError={() => setError([])}
+    <div className="flex-container">
+      <div className="form-container">
+        <h1 className="form-header">Sign Up</h1>
+        {error.map((e) => {
+          return (
+            <ErrorNotice
+              key={e.msg}
+              message={e.msg}
+              clearError={() => setError([])}
+            />
+          )
+        })}
+        <p>Create Your Account</p>
+        <form onSubmit={(e) => onSubmit(e)}>
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            value={email}
+            onChange={(e) => onChange(e)}
           />
-        )
-      })}
-      <p>Create Your Account</p>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <input
-          type="text"
-          placeholder="Email"
-          name="email"
-          value={email}
-          onChange={(e) => onChange(e)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          minLength="6"
-          value={password}
-          onChange={(e) => onChange(e)}
-        />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          name="password2"
-          minLength="6"
-          value={password2}
-          onChange={(e) => onChange(e)}
-        />
-        <input type="submit" value="Register" />
-      </form>
-      <p>
-        Already have an account? <Link to="/login">Sign In</Link>
-      </p>
-    </>
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            minLength="6"
+            value={password}
+            onChange={(e) => onChange(e)}
+          />
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            name="password2"
+            minLength="6"
+            value={password2}
+            onChange={(e) => onChange(e)}
+          />
+          <input type="submit" value="Register" />
+        </form>
+        <p>
+          Already have an account?{" "}
+          <Link to="/login">
+            <span className="underline">Sign In</span>
+          </Link>
+        </p>
+      </div>
+    </div>
   )
 }

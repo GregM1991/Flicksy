@@ -6,15 +6,17 @@ const SingleMovie = (props) => {
     <>
       <Link to={`/movie/${props.movieId}`}>
         <div
+          className="single-movie"
           style={{
             backgroundImage: `url(${props.image})`,
-            width: "auto",
-            height: "300px",
-            backgroundRepeat: "no-repeat",
           }}
-        ></div>
-        <span>{props.title}</span>
-        <p>{props.text}</p>
+        >
+          <div className="single-movie-info">
+            <h3>{props.title}</h3>
+            <p>{props.text}</p>
+            <span>View movie</span>
+          </div>
+        </div>
       </Link>
     </>
   )

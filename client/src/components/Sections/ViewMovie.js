@@ -59,61 +59,50 @@ const ViewMovie = (props) => {
     setToggle(!Toggle)
   }
   return (
-    <div>
+    <>
       <div
+        className="view-movie-image"
         style={{
-          backgroundImage: `url(${IMG_URL}w200${getMovie.poster_path})`,
-          width: "auto",
-          height: "300px",
-          backgroundRepeat: "no-repeat",
+          backgroundImage: `url(${IMG_URL}w400${getMovie.poster_path})`,
         }}
       ></div>
 
-      <h1>{getMovie.title}</h1>
-      <p>{getMovie.overview}</p>
-      <span>{getMovie.runtime} mins</span>
-      <span>Release date: {getMovie.release_date}</span>
-      <span>Rating: {getMovie.vote_average}</span>
-      {isInFavouritesPlaylist() ? (
-        <button>Added to Favourites</button>
-      ) : (
-        <FavouritesButton movieId={movieId} />
-      )}
-      {isInWatchlistPlaylist() ? (
-        <button>Added to Watchilst</button>
-      ) : (
-        <WatchlistButton movieId={movieId} />
-      )}
-
-      <div>
-        <button onClick={handleClick}>Show actors</button>
+      <h1 className="view-movie-title">{getMovie.title}</h1>
+      <p className="view-movie-description">{getMovie.overview}</p>
+      <div className="secondary-info">
+        <span className="view-movie-runtime">{getMovie.runtime} mins</span>
+        <span className="view-movie-span">
+          Released: {getMovie.release_date}
+        </span>
+        <span className="view-movie-span">Rating: {getMovie.vote_average}</span>
       </div>
+      <div className="view-movie-buttons">
+        {isInFavouritesPlaylist() ? (
+          <button class="button">Added to Favourites</button>
+        ) : (
+          <FavouritesButton movieId={movieId} />
+        )}
+        {isInWatchlistPlaylist() ? (
+          <button class="button">Added to Watchilst</button>
+        ) : (
+          <WatchlistButton movieId={movieId} />
+        )}
+      </div>
+
+      <button className="button view-actors-button" onClick={handleClick}>
+        Show actors
+      </button>
 
       {Toggle && (
         //only when the button is toggle then it will show the actors
-        <div>
+        <div className="actors">
           {Actors &&
-            Actors.cast.map(
-              (actor) =>
-                //check if actor have a picture, if not wont render out
-                actor.profile_path && (
-                  <div key={actor.cast_id}>
-                    <div
-                      style={{
-                        backgroundImage: `url(${IMG_URL}w400${actor.profile_path})`,
-                        width: "100%",
-                        height: "400px",
-                        backgroundRepeat: "no-repeat",
-                      }}
-                    ></div>
-                    <div>{actor.name}</div>
-                    <div>As {actor.character}</div>
-                  </div>
-                )
-            )}
+            Actors.cast.map((actor) => (
+              <span key={actor.cast_id}>{actor.name}, </span>
+            ))}
         </div>
       )}
-    </div>
+    </>
   )
 }
 

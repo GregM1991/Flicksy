@@ -55,20 +55,23 @@ export default function ViewPlaylist(props) {
 
   return (
     <>
-      <h1>{playlistName}</h1>
-      <div>
+      <h1 className="playlist-title">{playlistName}</h1>
+      <div className="inner-grid">
         {Movies.map((movie) => {
           return (
             <div key={movie.mongoId}>
               <SingleMovie
                 key={movie.id}
-                image={`${IMG_URL}w200${movie.poster_path}`}
+                image={`${IMG_URL}w400${movie.poster_path}`}
                 title={movie.original_title}
                 text={movie.overview}
                 movieId={movie.id}
               />
-              <button onClick={() => deleteMovie(movie.mongoId)}>
-                Delete Movie
+              <button
+                className="button"
+                onClick={() => deleteMovie(movie.mongoId)}
+              >
+                Delete Movie <i class="fa fa-trash" aria-hidden="true"></i>
               </button>
             </div>
           )

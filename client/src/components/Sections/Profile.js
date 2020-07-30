@@ -7,10 +7,5 @@ export default function Profile() {
   const { userProfile } = useContext(UserContext)
   console.log(userProfile)
 
-  return (
-    <>
-      {/* Refactor this to be hasProfile */}
-      <div>{userProfile === null ? <CreateProfile /> : <ShowProfile />}</div>
-    </>
-  )
+  return <>{userProfile === null ? <CreateProfile /> : <ShowProfile />}</>
 }

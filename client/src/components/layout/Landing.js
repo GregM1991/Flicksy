@@ -24,7 +24,7 @@ export const Landing = () => {
 
   const [Searched, setSearched] = useState(false)
   //the function that change the state of Searched
-  function hasSearched(){
+  function hasSearched() {
     setSearched(true)
   }
   async function getMovies() {
@@ -93,65 +93,23 @@ export const Landing = () => {
 
   return (
     <>
-    {/* pass the hasSearched function to the SearchMovie component */}
-    <SearchMovie hasSearched={hasSearched}/>  
-    
-
-
-    {!Searched && (
-      <>
-        <h1>Popular Movies</h1>
-        {currentPagePopular < 500 && <button onClick={handleNextMovies}>Next</button>}
-        {currentPagePopular >1 && <button onClick={handlePreviousMovies}>Previous</button>}
-        {movies.map((movie) => {
-          return (
-            // only render out movies that has poster
-            movie.poster_path &&
-            <SingleMovie
-              key={movie.id}
-              image={`${IMG_URL}w200${movie.poster_path}`}
-              title={movie.original_title}
-              text={movie.overview}
-              movieId={movie.id}
-            />
-          )
+      {/* pass the hasSearched function to the SearchMovie component */}
+      <SearchMovie hasSearched={hasSearched} />
+      {/* if user searched something, the default movies wont get rendered on the landing page */}
+      <div className="inner-grid">
+        {!Searched &&
+          movies.map((movie) => {
+            return (
+              <SingleMovie
+                key={movie.id}
+                image={`${IMG_URL}w400${movie.poster_path}`}
+                title={movie.original_title}
+                text={movie.overview}
+                movieId={movie.id}
+              />
+            )
           })}
-
-          <h1>Top Rated Movies</h1>
-          {currentPageTopRated < 380 && <button onClick={handleNextTopRated}>Next</button>}
-          {currentPageTopRated >1 && <button onClick={handlePreviousTopRated}>Previous</button>}
-          {topRated.map((movie) => {
-              return (
-                // only render out movies that has poster
-                movie.poster_path &&
-                <SingleMovie
-                  key={movie.id}
-                  image={`${IMG_URL}w200${movie.poster_path}`}
-                  title={movie.original_title}
-                  text={movie.overview}
-                  movieId={movie.id}
-                />
-              )
-          })}
-
-          <h1>NowPlaying Movies</h1>
-          {currentPageNowPlaying < 14 && <button onClick={handleNextNowPlaying}>Next</button>}
-          {currentPageNowPlaying >1 && <button onClick={handlePreviousNowPlaying}>Previous</button>}
-          {nowPlaying.map((movie) => {
-              return (
-                // only render out movies that has poster
-                movie.poster_path &&
-                <SingleMovie
-                  key={movie.id}
-                  image={`${IMG_URL}w200${movie.poster_path}`}
-                  title={movie.original_title}
-                  text={movie.overview}
-                  movieId={movie.id}
-                />
-              )
-          })}
-      </>
-    )}
+      </div>
     </>
   )
 }
