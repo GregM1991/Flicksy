@@ -35,7 +35,9 @@ export default function FavouritesButton(props) {
 
   return (
     <>
-      <button onClick={() => saveMovie(props.movieId)}>Add to Watchlist</button>
+      <button className="button" onClick={() => saveMovie(props.movieId)}>
+        Add to Watchlist
+      </button>
     </>
   )
 }

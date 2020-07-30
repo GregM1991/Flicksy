@@ -37,7 +37,7 @@ export default function FavouritesButton(props) {
 
   return (
     <>
-      <button onClick={() => saveMovie(props.movieId)}>
+      <button className="button" onClick={() => saveMovie(props.movieId)}>
         Add to Favourites
       </button>
     </>
