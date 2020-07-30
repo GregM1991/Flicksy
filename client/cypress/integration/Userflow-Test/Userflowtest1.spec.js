@@ -2,7 +2,7 @@
 
 //This test is to test if the user can login, create a profile, return homepage and view a movie and logout.
 
-context('Login', () => {
+context('Userflowtest1', () => {
     beforeEach(() => {
       cy.visit('http://localhost:3000/')
     })
