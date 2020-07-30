@@ -1,3 +1,4 @@
 node_modules/
 clilent/node_modules
+clilent/yarn.lock
 config/default.json
