@@ -21,13 +21,21 @@ export default function AuthOptions() {
     <div>
       {userData.user ? (
         <>
-          <button onClick={profile}>My Profile</button>
-          <button onClick={logout}>Log Out</button>
+          <button className="button" onClick={profile}>
+            My Profile
+          </button>
+          <button className="button" onClick={logout}>
+            Log Out
+          </button>
         </>
       ) : (
         <>
-          <button onClick={register}>Register</button>
-          <button onClick={login}>Log in</button>
+          <button className="button" onClick={register}>
+            Register
+          </button>
+          <button className="button" onClick={login}>
+            Log in
+          </button>
         </>
       )}
     </div>

@@ -10,6 +10,7 @@ import axios from "axios"
 import Profile from "./components/Sections/Profile"
 import ViewPlaylist from "./components/Sections/ViewPlaylist"
 import SearchMovie from "./components/Sections/SearchMovie"
+import "./App.css"
 
 const App = () => {
   const [userProfile, setUserProfile] = useState(null)
@@ -56,7 +57,7 @@ const App = () => {
       <UserContext.Provider
         value={{ userData, setUserData, userProfile, setUserProfile }}
       >
-        <Navbar />
+        <Navbar className="navbar" />
         <Route exact path="/" component={Landing} />
         <Switch>
           <Route exact path="/register" component={Register} />

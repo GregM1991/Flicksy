@@ -52,30 +52,32 @@ export const Login = () => {
   }
 
   return (
-    <>
-      <h1>Login</h1>
-      <p>Sign in to your account</p>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <input
-          type="text"
-          placeholder="Email"
-          name="email"
-          value={email}
-          onChange={(e) => onChange(e)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          minLength="6"
-          value={password}
-          onChange={(e) => onChange(e)}
-        />
-        <input type="submit" value="Login" />
-      </form>
-      <p>
-        Already have an account? <Link to="/register">Sign Up</Link>
-      </p>
-    </>
+    <div class="flex-container">
+      <div className="form-container">
+        <h1 className="form-header">Login</h1>
+        <p>Sign in to your account</p>
+        <form onSubmit={(e) => onSubmit(e)}>
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            value={email}
+            onChange={(e) => onChange(e)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            minLength="6"
+            value={password}
+            onChange={(e) => onChange(e)}
+          />
+          <input type="submit" value="Login" />
+        </form>
+        <p>
+          Already have an account? <Link to="/register">Sign Up</Link>
+        </p>
+      </div>
+    </div>
   )
 }

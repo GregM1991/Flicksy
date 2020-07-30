@@ -9,7 +9,7 @@ export const Landing = () => {
 
   const [Searched, setSearched] = useState(false)
   //the function that change the state of Searched
-  function hasSearched(){
+  function hasSearched() {
     setSearched(true)
   }
 
@@ -31,20 +31,23 @@ export const Landing = () => {
 
   return (
     <>
-    {/* pass the hasSearched function to the SearchMovie component */}
-    <SearchMovie hasSearched={hasSearched}/>  
-    {/* if user searched something, the default movies wont get rendered on the landing page */}
-      {!Searched && movies.map((movie) => {
-        return (
-          <SingleMovie
-            key={movie.id}
-            image={`${IMG_URL}w200${movie.poster_path}`}
-            title={movie.original_title}
-            text={movie.overview}
-            movieId={movie.id}
-          />
-        )
-      })}
+      {/* pass the hasSearched function to the SearchMovie component */}
+      <SearchMovie hasSearched={hasSearched} />
+      {/* if user searched something, the default movies wont get rendered on the landing page */}
+      <div className="inner-grid">
+        {!Searched &&
+          movies.map((movie) => {
+            return (
+              <SingleMovie
+                key={movie.id}
+                image={`${IMG_URL}w400${movie.poster_path}`}
+                title={movie.original_title}
+                text={movie.overview}
+                movieId={movie.id}
+              />
+            )
+          })}
+      </div>
     </>
   )
 }

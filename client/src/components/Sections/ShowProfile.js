@@ -19,22 +19,31 @@ export const ShowProfile = () => {
     setUserProfile(null)
     setUserData({
       token: undefined,
-      user: undefined
+      user: undefined,
     })
-    history.push('/')
+    history.push("/")
   }
 
   return (
-    <>
-      <div>My Profile </div>
-      <div>
+    <div className="profile-container">
+      <h2>Hello {userProfile.name}</h2>
+      <div className="playlists-wrapper">
         {userProfile.playlists.map((playlist) => (
-          <Link key={playlist._id} to={`/playlist/${playlist._id.toString()}`}>
-            <h3>{playlist.playlistname}</h3>
-          </Link>
+          <div className="playlist">
+            <Link
+              key={playlist._id}
+              to={`/playlist/${playlist._id.toString()}`}
+            >
+              <h3>{playlist.playlistname}</h3>
+              <p>{playlist.playlist.length} movies</p>
+            </Link>
+            {}
+          </div>
         ))}
-        <button onClick={deleteProfile}> Delete Profile </button>
       </div>
-    </>
+      <button className="button" onClick={deleteProfile}>
+        Delete Profile <i class="fas fa-trash-alt"></i>
+      </button>
+    </div>
   )
 }

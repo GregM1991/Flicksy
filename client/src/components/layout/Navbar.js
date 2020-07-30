@@ -4,13 +4,13 @@ import AuthOptions from "../auth/AuthOptions"
 
 export const Navbar = () => {
   return (
-    <nav>
+    <nav className="navbar">
       <h1>
-        <Link to="/">iFlicks</Link><br/>
+        <Link to="/">
+          <i class="fas fa-film"></i> Flicksy
+        </Link>
       </h1>
       <AuthOptions />
-      <hr />
-      
     </nav>
   )
 }
