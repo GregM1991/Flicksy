@@ -1,6 +1,8 @@
 # T3_A2 Part 1 Documentation - iFlicks (working title)
 ## Jeremy W, Greg M, Hai H
 
+### https://github.com/GregM1991/iFlicks
+
 ## Application Outline
 The purpose of this application is for users to view and search a large library of movies for the user to decide what to watch by viewing movie trailers, images, descriptions and user reviews, while also added social aspects by users being able to create a user profile that will display user information, their movie reviews and movie playlists.
 
