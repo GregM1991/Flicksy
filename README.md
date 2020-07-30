@@ -1,7 +1,7 @@
 # T3_A2 Part 1 Documentation - Flicksy
 ## Jeremy W, Greg M, Hai H
 
-### Github Repo: https://github.com/GregM1991/iFlicks
+### Github Repo: https://github.com/GregM1991/Flicksy
 ### Website URL: 
 
 ## Application Outline
